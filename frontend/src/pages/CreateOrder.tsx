@@ -7,9 +7,9 @@ import { useUSDCBalance, useBestRate } from '../hooks/useContracts'
 import { CONTRACTS, ERC20_ABI, ORDERBOOK_ABI } from '../config/contracts'
 
 const strategies = [
-  { id: 'vault', icon: 'account_balance', name: 'Base Vault', desc: 'Tu capital se deposita en el vault de EarnWhile. El AI Agent lo despliega automáticamente a los mejores protocolos de yield (Aave, BENQI, Compound) via Optimistic Democracy. Rendimiento estimado: 5-12% APY.' },
-  { id: 'swap', icon: 'swap_horizontal_circle', name: 'Liquid Swap', desc: 'Tu capital se convierte automáticamente a la stablecoin con mayor rendimiento disponible. Ideal si querés maximizar yield sin importar en qué token esperás. Rebalanceo cada bloque.' },
-  { id: 'wallet', icon: 'wallet', name: 'Wallet Hold', desc: 'Sin yield. Tu capital permanece en tu wallet sin moverse hasta que la orden se ejecute. Máxima seguridad, cero rendimiento. Solo recomendado si el precio objetivo está muy cerca.' },
+  { id: 'vault', icon: 'account_balance', name: 'AI Yield Optimizer', desc: 'El AI Agent despliega tu capital a los mejores protocolos (Aave, BENQI, Compound) usando Optimistic Democracy con 5 validadores. Rebalanceo automático según condiciones de mercado. Rendimiento estimado: 5-12% APY.' },
+  { id: 'swap', icon: 'swap_horizontal_circle', name: 'Max Yield Aggressive', desc: 'Estrategia agresiva que incluye protocolos de mayor rendimiento como Trader Joe y pools de liquidez concentrada. Mayor reward, mayor riesgo. Rendimiento estimado: 12-25% APY.' },
+  { id: 'safe', icon: 'shield', name: 'Stablecoin Safe', desc: 'Solo protocolos de lending AAA (Aave, Compound). Sin exposición a pools de liquidez ni DEXs. Retiro instantáneo garantizado cuando tu orden se ejecute. Rendimiento estimado: 3-6% APY.' },
 ]
 
 export default function CreateOrder() {
