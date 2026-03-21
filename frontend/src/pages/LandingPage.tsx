@@ -120,7 +120,10 @@ export default function LandingPage() {
                   <span className="absolute top-6 right-8 font-label text-[10px] text-primary uppercase tracking-widest font-bold">
                     La Ventaja EarnWhile
                   </span>
-                  <h3 className="font-headline text-2xl font-bold mb-6 text-primary">EarnWhile</h3>
+                  <h3 className="font-headline text-2xl font-bold mb-6 text-primary flex items-center gap-2">
+                    <img src="/images/logo.png" alt="" className="w-7 h-7" />
+                    EarnWhile
+                  </h3>
                   <div className="space-y-6">
                     <div className="h-2 bg-primary-container/20 rounded-full w-full overflow-hidden">
                       <div className="bg-primary h-full w-[98%]" />
