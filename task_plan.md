@@ -16,17 +16,18 @@ Build a working MVP of EarnWhile — yield layer for idle capital in limit order
 - [x] Connect frontend ↔ contracts (wagmi hooks)
 - [x] GitHub repo: https://github.com/fulegod/earnwhile
 - [x] Vercel deploy: https://frontend-puce-rho-23.vercel.app
-- [ ] Deploy agent to Bradbury testnet
+- [x] Deploy agent to GenLayer Bradbury testnet (0xa4e2...A907)
 
-### Phase 3: Polish ⬅️ CURRENT
-- [ ] UI animations and transitions
-- [ ] Loading states and tx confirmations
-- [ ] Error handling
-- [ ] Mobile responsiveness check
+### Phase 3: Polish ✅
+- [x] UI animations (InfiniteSlider logo cloud, framer-motion)
+- [x] Mobile responsive (bottom tab bar, card layouts)
+- [x] How it Works section (3 steps)
+- [x] LATAM angle section (inflation stats)
+- [x] Roadmap section (Limit Orders → RWA → Multi-chain)
+- [x] Strategy cards with differentiated APY
+- [x] Official GenLayer logo from their repo
+- [x] README improved (architecture, Optimistic Democracy deep dive, LATAM, revenue model)
 
 ### Phase 4: Submit
 - [ ] Demo video (3 min, español + subs inglés)
-- [ ] Audio with ElevenLabs
 - [ ] Submit DoraHacks (3 tracks)
-- [ ] Submit PL_Genesis
-- [ ] Submit GenLayer hackathon
