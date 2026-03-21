@@ -7,9 +7,9 @@ import { useUSDCBalance, useBestRate } from '../hooks/useContracts'
 import { CONTRACTS, ERC20_ABI, ORDERBOOK_ABI } from '../config/contracts'
 
 const strategies = [
-  { id: 'vault', icon: 'account_balance', name: 'AI Yield Optimizer', desc: 'El AI Agent despliega tu capital a los mejores protocolos (Aave, BENQI, Compound) usando Optimistic Democracy con 5 validadores. Rebalanceo automático según condiciones de mercado. Rendimiento estimado: 5-12% APY.' },
-  { id: 'swap', icon: 'swap_horizontal_circle', name: 'Max Yield Aggressive', desc: 'Estrategia agresiva que incluye protocolos de mayor rendimiento como Trader Joe y pools de liquidez concentrada. Mayor reward, mayor riesgo. Rendimiento estimado: 12-25% APY.' },
-  { id: 'safe', icon: 'shield', name: 'Stablecoin Safe', desc: 'Solo protocolos de lending AAA (Aave, Compound). Sin exposición a pools de liquidez ni DEXs. Retiro instantáneo garantizado cuando tu orden se ejecute. Rendimiento estimado: 3-6% APY.' },
+  { id: 'vault', icon: 'account_balance', name: 'Balanced', desc: 'AI Agent + Optimistic Democracy. Aave, BENQI, Compound con rebalanceo automático. 5-12% APY.' },
+  { id: 'swap', icon: 'bolt', name: 'Aggressive', desc: 'Incluye Trader Joe y pools de liquidez concentrada. Mayor rendimiento, mayor riesgo. 12-25% APY.' },
+  { id: 'safe', icon: 'shield', name: 'Conservative', desc: 'Solo lending AAA (Aave, Compound). Retiro instantáneo garantizado. 3-6% APY.' },
 ]
 
 export default function CreateOrder() {
