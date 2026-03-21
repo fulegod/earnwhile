@@ -3,7 +3,6 @@ import ConnectWallet from './ConnectWallet'
 
 export default function TopNavBar({ active = 'markets' }: { active?: string }) {
   const links = [
-    { id: 'markets', label: 'Inicio', href: '/' },
     { id: 'vaults', label: 'Dashboard', href: '/app' },
     { id: 'agent', label: 'AI Agent', href: '/app/agent' },
   ]

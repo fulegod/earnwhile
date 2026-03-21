@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import TopNavBar from '../components/TopNavBar'
+import SideNavBar from '../components/SideNavBar'
+import ConnectWallet from '../components/ConnectWallet'
 
 // Real data from GenLayer evaluate_strategy execution
 // order-1: current_price=1800, target_price=2000, amount=1000000
@@ -56,10 +57,15 @@ export default function AgentFeed() {
   }, [visibleLogs, cycle])
 
   return (
-    <div className="bg-background font-body text-on-surface">
-      <TopNavBar active="agent" />
+    <div className="bg-background font-body text-on-surface min-h-screen flex">
+      <SideNavBar />
 
-      <main className="pt-32 pb-24 px-8 max-w-[1440px] mx-auto">
+      <main className="flex-1 ml-64 min-h-screen">
+        <header className="fixed top-0 right-0 left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-12 h-20">
+          <ConnectWallet />
+        </header>
+
+        <div className="pt-28 pb-24 px-12">
         {/* Header */}
         <header className="mb-20 flex flex-col md:flex-row justify-between items-end gap-8">
           <div className="max-w-2xl">
@@ -200,10 +206,11 @@ export default function AgentFeed() {
             <a className="text-xs font-label uppercase tracking-widest hover:text-primary transition-colors" href="#">Discord</a>
           </div>
         </footer>
+        </div>
       </main>
 
       {/* Floating badge */}
-      <div className="fixed bottom-8 left-8 p-4 bg-on-surface text-surface rounded-lg shadow-2xl flex items-center gap-4 z-40 hidden md:flex">
+      <div className="fixed bottom-8 left-72 p-4 bg-on-surface text-surface rounded-lg shadow-2xl flex items-center gap-4 z-40 hidden md:flex">
         <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
         <div className="text-[10px] font-mono leading-none tracking-tight">
           AGENTE GENLAYER<br />0x76...D7B4 ACTIVO

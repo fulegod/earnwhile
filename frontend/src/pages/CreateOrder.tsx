@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { parseUnits, formatUnits } from 'viem'
-import TopNavBar from '../components/TopNavBar'
+import SideNavBar from '../components/SideNavBar'
+import ConnectWallet from '../components/ConnectWallet'
 import { useUSDCBalance, useBestRate } from '../hooks/useContracts'
 import { CONTRACTS, ERC20_ABI, ORDERBOOK_ABI } from '../config/contracts'
 
@@ -90,10 +91,15 @@ export default function CreateOrder() {
   const needsOrder = approveDone && !orderDone
 
   return (
-    <div className="bg-background font-body text-on-surface min-h-screen">
-      <TopNavBar active="create" />
+    <div className="bg-background font-body text-on-surface min-h-screen flex">
+      <SideNavBar />
 
-      <main className="pt-32 pb-24 px-8 max-w-[1440px] mx-auto min-h-screen">
+      <main className="flex-1 ml-64 min-h-screen">
+        <header className="fixed top-0 right-0 left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-12 h-20">
+          <ConnectWallet />
+        </header>
+
+        <div className="pt-28 pb-24 px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12">
           <div className="lg:col-span-8 space-y-20">
             {/* Step 1: Asset */}
@@ -300,6 +306,7 @@ export default function CreateOrder() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </main>
     </div>

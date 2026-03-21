@@ -241,26 +241,7 @@ export default function Dashboard() {
 
       <main className="flex-1 ml-64 min-h-screen">
         {/* Top bar */}
-        <header className="fixed top-0 right-0 left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-between items-center px-12 h-20">
-          <nav className="hidden md:flex gap-8 items-center">
-            {[
-              { label: 'Dashboard', href: '/app', active: true },
-              { label: 'Crear Orden', href: '/app/create', active: false },
-              { label: 'AI Agent', href: '/app/agent', active: false },
-            ].map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                className={
-                  link.active
-                    ? 'text-primary border-b-2 border-primary pb-1 font-headline tracking-tight font-medium'
-                    : 'text-on-surface-variant hover:text-primary transition-colors duration-200 font-headline tracking-tight font-medium'
-                }
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+        <header className="fixed top-0 right-0 left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-12 h-20">
           <div className="flex items-center gap-6">
             <button className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
               notifications
@@ -403,9 +384,9 @@ export default function Dashboard() {
                   "El spread actual de stablecoins en Avalanche se está ampliando. Nuestros modelos sugieren migrar 15% de tu liquidez AVAX al nuevo mercado de BENQI podría incrementar el yield total del portafolio en +0.85% durante los próximos 14 días."
                 </p>
                 <div className="pt-4 flex flex-col gap-3">
-                  <button className="w-full bg-on-surface text-surface py-3 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-primary transition-colors">
+                  <Link to="/app/agent" className="w-full bg-on-surface text-surface py-3 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-primary transition-colors text-center block">
                     Ejecutar Migración
-                  </button>
+                  </Link>
                   <Link to="/app/agent" className="w-full border border-outline-variant/30 text-on-surface-variant py-3 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-white transition-all text-center block">
                     Ver Análisis Completo
                   </Link>

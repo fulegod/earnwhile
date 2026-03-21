@@ -1,5 +1,19 @@
 import { Link } from 'react-router-dom'
 import TopNavBar from '../components/TopNavBar'
+import { LogoCloud } from '@/components/ui/logo-cloud'
+
+const partnerLogos = [
+  { src: '/tokens/avax.png', alt: 'Avalanche' },
+  { src: '/tokens/genlayer.svg', alt: 'GenLayer' },
+  { src: '/tokens/aave.png', alt: 'Aave' },
+  { src: '/tokens/compound.png', alt: 'Compound' },
+  { src: '/tokens/usdc.png', alt: 'USDC' },
+  { src: '/tokens/eth.png', alt: 'Ethereum' },
+  { src: '/tokens/avax.png', alt: 'Avalanche' },
+  { src: '/tokens/genlayer.svg', alt: 'GenLayer' },
+  { src: '/tokens/aave.png', alt: 'Aave' },
+  { src: '/tokens/compound.png', alt: 'Compound' },
+]
 
 export default function LandingPage() {
   return (
@@ -14,7 +28,7 @@ export default function LandingPage() {
               <span className="inline-block px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-semibold tracking-widest uppercase mb-8">
                 Protocol v1.0.0 · Yield Autónomo
               </span>
-              <h1 className="font-headline text-7xl md:text-8xl lg:text-[110px] leading-[0.95] font-extrabold tracking-tighter text-on-surface mb-12">
+              <h1 className="font-headline text-5xl md:text-7xl xl:text-[110px] leading-[0.95] font-extrabold tracking-tighter text-on-surface mb-12">
                 Tu capital genera yield{' '}
                 <br />
                 <span className="text-primary italic">mientras espera.</span>
@@ -30,15 +44,15 @@ export default function LandingPage() {
                   Lanzar App
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </Link>
-                <button className="px-10 py-5 rounded-lg text-lg font-headline font-bold text-primary hover:bg-surface-container-low transition-all">
+                <a href="https://github.com/fulegod/earnwhile" target="_blank" rel="noreferrer" className="px-10 py-5 rounded-lg text-lg font-headline font-bold text-primary hover:bg-surface-container-low transition-all">
                   Ver Documentación
-                </button>
+                </a>
               </div>
             </div>
           </div>
 
           {/* Hero Image - contained to right side */}
-          <div className="absolute right-12 top-1/2 -translate-y-1/2 w-[480px] h-[480px] pointer-events-none hidden lg:block">
+          <div className="absolute right-12 top-1/2 -translate-y-1/2 w-[320px] h-[320px] xl:w-[480px] xl:h-[480px] pointer-events-none hidden lg:block">
             <img src="/images/hero-4k.jpg" alt="" className="w-full h-full object-contain drop-shadow-2xl" />
           </div>
         </section>
@@ -50,23 +64,7 @@ export default function LandingPage() {
               <span className="font-label text-xs uppercase tracking-[0.2em] text-outline mb-12">
                 Infraestructura de Grado Institucional
               </span>
-              <div className="flex flex-wrap justify-center items-center gap-x-20 gap-y-8 opacity-40 grayscale">
-                <div className="flex items-center gap-3">
-                  <img src="/tokens/avax.png" alt="Avalanche" className="w-10 h-10 rounded-full" />
-                  <span className="font-headline font-extrabold text-xl">AVALANCHE</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="font-headline font-extrabold text-xl">GENLAYER</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <img src="/tokens/aave.png" alt="Aave" className="w-10 h-10 rounded-full" />
-                  <span className="font-headline font-extrabold text-xl">AAVE</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <img src="/tokens/compound.png" alt="Compound" className="w-10 h-10 rounded-full" />
-                  <span className="font-headline font-extrabold text-xl">COMPOUND</span>
-                </div>
-              </div>
+              <LogoCloud logos={partnerLogos} />
             </div>
           </div>
         </section>
@@ -120,7 +118,7 @@ export default function LandingPage() {
                   <span className="absolute top-6 right-8 font-label text-[10px] text-primary uppercase tracking-widest font-bold">
                     La Ventaja EarnWhile
                   </span>
-                  <h3 className="font-headline text-2xl font-bold mb-6 text-primary flex items-center gap-2">
+                  <h3 className="font-headline text-2xl font-bold mb-6 text-primary flex items-center gap-3">
                     <img src="/images/logo.png" alt="" className="w-7 h-7" />
                     EarnWhile
                   </h3>
