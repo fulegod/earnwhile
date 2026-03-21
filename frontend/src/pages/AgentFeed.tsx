@@ -60,12 +60,12 @@ export default function AgentFeed() {
     <div className="bg-background font-body text-on-surface min-h-screen flex">
       <SideNavBar />
 
-      <main className="flex-1 lg:ml-64 min-h-screen pb-20 lg:pb-0">
-        <header className="fixed top-0 right-0 left-0 lg:left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-4 lg:px-12 h-16 lg:h-20">
+      <main className="flex-1 md:ml-64 min-h-screen pb-20 md:pb-0">
+        <header className="fixed top-0 right-0 left-0 md:left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-4 md:px-12 h-16 md:h-20">
           <ConnectWallet />
         </header>
 
-        <div className="pt-24 lg:pt-28 pb-24 px-4 lg:px-12">
+        <div className="pt-24 md:pt-28 pb-24 px-4 md:px-12">
         {/* Header */}
         <header className="mb-20 flex flex-col md:flex-row justify-between items-end gap-8">
           <div className="max-w-2xl">

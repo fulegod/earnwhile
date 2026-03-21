@@ -12,7 +12,7 @@ export default function SideNavBar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex h-screen w-64 bg-[#f8f8f4] flex-col p-6 gap-y-2 border-r border-outline-variant/15 fixed left-0 top-0 z-40">
+      <aside className="hidden md:flex h-screen w-64 bg-[#f8f8f4] flex-col p-6 gap-y-2 border-r border-outline-variant/15 fixed left-0 top-0 z-40">
         <div className="mb-10 px-2 flex items-center gap-3">
           <img src="/images/logo.png" alt="EarnWhile" className="w-8 h-8 rounded-lg" />
           <Link to="/" className="font-headline font-bold text-xl tracking-tighter text-on-surface">EarnWhile</Link>
@@ -50,7 +50,7 @@ export default function SideNavBar() {
       </aside>
 
       {/* Mobile bottom nav */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#f8f8f4] border-t border-outline-variant/15 flex justify-around items-center h-16 px-2">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#f8f8f4] border-t border-outline-variant/15 flex justify-around items-center h-16 px-2">
         {navItems.map((item) => {
           const isActive = location.pathname === item.href
           return (

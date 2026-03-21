@@ -239,9 +239,9 @@ export default function Dashboard() {
     <div className="flex min-h-screen">
       <SideNavBar />
 
-      <main className="flex-1 lg:ml-64 min-h-screen pb-20 lg:pb-0">
+      <main className="flex-1 md:ml-64 min-h-screen pb-20 md:pb-0">
         {/* Top bar */}
-        <header className="fixed top-0 right-0 left-0 lg:left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-4 lg:px-12 h-16 lg:h-20">
+        <header className="fixed top-0 right-0 left-0 md:left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-4 md:px-12 h-16 md:h-20">
           <div className="flex items-center gap-6">
             <button className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
               notifications
@@ -250,7 +250,7 @@ export default function Dashboard() {
           </div>
         </header>
 
-        <div className="pt-24 lg:pt-32 pb-24 px-4 lg:px-12 max-w-7xl mx-auto">
+        <div className="pt-24 md:pt-32 pb-24 px-4 md:px-12 max-w-7xl mx-auto">
           {/* Stats */}
           <section className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-12 mb-12 lg:mb-20">
             <div className="space-y-2 lg:space-y-4 p-4 lg:p-0 bg-surface-container-lowest lg:bg-transparent rounded-xl lg:rounded-none">
