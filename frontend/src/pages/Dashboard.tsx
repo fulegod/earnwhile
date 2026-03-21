@@ -318,10 +318,14 @@ export default function Dashboard() {
     <div className="flex min-h-screen overflow-x-hidden">
       <SideNavBar />
 
-      <main className="flex-1 md:ml-64 min-h-screen pb-20 md:pb-0">
+      <main className="flex-1 md:ml-64 min-h-screen pb-20 md:pb-0 overflow-x-hidden w-full max-w-full">
         {/* Top bar */}
-        <header className="fixed top-0 right-0 left-0 md:left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-4 md:px-12 h-16 md:h-20">
-          <div className="flex items-center gap-6">
+        <header className="fixed top-0 right-0 left-0 md:left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-between items-center px-4 md:px-12 h-16 md:h-20">
+          <Link to="/" className="flex items-center gap-2 md:hidden">
+            <img src="/images/logo.png" alt="" className="w-7 h-7" />
+            <span className="font-headline font-bold text-lg tracking-tighter">EarnWhile</span>
+          </Link>
+          <div className="flex items-center gap-4 md:gap-6">
             <button className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
               notifications
             </button>

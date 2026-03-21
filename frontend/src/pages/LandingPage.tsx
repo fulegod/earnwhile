@@ -81,8 +81,8 @@ export default function LandingPage() {
               {/* Step 01 */}
               <div className="flex flex-col items-center px-6 relative">
                 <span className="font-label text-[11px] uppercase tracking-[0.2em] text-primary font-bold mb-6">Paso 01</span>
-                <div className="w-28 h-28 rounded-3xl bg-primary/10 flex items-center justify-center mb-8">
-                  <span className="material-symbols-outlined text-6xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>account_balance_wallet</span>
+                <div className="w-32 h-32 rounded-3xl bg-primary/10 flex items-center justify-center mb-8">
+                  <span className="material-symbols-outlined text-7xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>account_balance_wallet</span>
                 </div>
                 <h3 className="font-headline text-2xl font-bold mb-4 text-center">Creá tu Orden</h3>
                 <p className="text-on-surface-variant leading-relaxed text-justify">
@@ -96,8 +96,8 @@ export default function LandingPage() {
               {/* Step 02 */}
               <div className="flex flex-col items-center px-6 relative mt-12 md:mt-0">
                 <span className="font-label text-[11px] uppercase tracking-[0.2em] text-primary font-bold mb-6">Paso 02</span>
-                <div className="w-28 h-28 rounded-3xl bg-primary/10 flex items-center justify-center mb-8">
-                  <span className="material-symbols-outlined text-6xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>smart_toy</span>
+                <div className="w-32 h-32 rounded-3xl bg-primary/10 flex items-center justify-center mb-8">
+                  <span className="material-symbols-outlined text-7xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>smart_toy</span>
                 </div>
                 <h3 className="font-headline text-2xl font-bold mb-4 text-center">El AI Agent Optimiza</h3>
                 <p className="text-on-surface-variant leading-relaxed text-justify">
@@ -111,8 +111,8 @@ export default function LandingPage() {
               {/* Step 03 */}
               <div className="flex flex-col items-center px-6 mt-12 md:mt-0">
                 <span className="font-label text-[11px] uppercase tracking-[0.2em] text-primary font-bold mb-6">Paso 03</span>
-                <div className="w-28 h-28 rounded-3xl bg-primary/10 flex items-center justify-center mb-8">
-                  <span className="material-symbols-outlined text-6xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>trending_up</span>
+                <div className="w-32 h-32 rounded-3xl bg-primary/10 flex items-center justify-center mb-8">
+                  <span className="material-symbols-outlined text-7xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>trending_up</span>
                 </div>
                 <h3 className="font-headline text-2xl font-bold mb-4 text-center">Ganás Mientras Esperás</h3>
                 <p className="text-on-surface-variant leading-relaxed text-justify">
