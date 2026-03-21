@@ -65,13 +65,19 @@ sas/
 └── README.md
 ```
 
+## Live Demo
+
+**Frontend:** https://frontend-puce-rho-23.vercel.app
+
+**GitHub:** https://github.com/fulegod/earnwhile
+
 ## Quick Start
 
 ### Smart Contracts
 ```bash
 cd contracts
 npm install
-npx hardhat test
+npx hardhat test          # 26/26 tests passing
 npx hardhat run scripts/deploy.ts --network fuji
 ```
 
@@ -79,7 +85,7 @@ npx hardhat run scripts/deploy.ts --network fuji
 ```bash
 cd frontend
 npm install
-npm run dev
+npm run dev               # http://localhost:5173
 ```
 
 ### AI Agent

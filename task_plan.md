@@ -5,19 +5,20 @@ Build a working MVP of EarnWhile — yield layer for idle capital in limit order
 
 ## Phases
 
-### Phase 1: Core Build ⬅️ CURRENT
+### Phase 1: Core Build ✅
 - [x] Setup monorepo
-- [ ] Smart contracts (Vault + OrderBook + YieldRouter)
-- [ ] Frontend (Landing + Dashboard + Create Order + AI Agent)
-- [ ] GenLayer Agent (Optimistic Democracy)
+- [x] Smart contracts (Vault + OrderBook + YieldRouter) — 26/26 tests
+- [x] Frontend (Landing + Dashboard + Create Order + AI Agent) — Adaline design
+- [x] GenLayer Agent (Optimistic Democracy) — 22 tests
 
-### Phase 2: Integration
-- [ ] Deploy contracts to Avalanche Fuji
-- [ ] Connect frontend ↔ contracts (wagmi hooks)
+### Phase 2: Integration ✅
+- [x] Deploy contracts to Avalanche Fuji (7 contracts)
+- [x] Connect frontend ↔ contracts (wagmi hooks)
+- [x] GitHub repo: https://github.com/fulegod/earnwhile
+- [x] Vercel deploy: https://frontend-puce-rho-23.vercel.app
 - [ ] Deploy agent to Bradbury testnet
-- [ ] End-to-end demo flow
 
-### Phase 3: Polish
+### Phase 3: Polish ⬅️ CURRENT
 - [ ] UI animations and transitions
 - [ ] Loading states and tx confirmations
 - [ ] Error handling
