@@ -189,7 +189,7 @@ export default function AgentFeed() {
             {/* Transparency */}
             <div className="p-6 bg-primary/5 rounded-xl border-l-2 border-primary">
               <p className="text-xs text-primary leading-relaxed">
-                <strong>Protocolo de Transparencia:</strong> Cada decisión del agente es evaluada por 5 validadores independientes (Mistral, Grok, Gemini, GPT-5.1, Kimi) via GenLayer Optimistic Democracy. Contrato: 0x76...D7B4
+                <strong>Protocolo de Transparencia:</strong> Cada decisión del agente es evaluada por 5 validadores independientes (Mistral, Grok, Gemini, GPT-5.1, Kimi) via GenLayer Optimistic Democracy. Contrato: 0xa4e2...A907
               </p>
             </div>
           </div>
@@ -213,7 +213,7 @@ export default function AgentFeed() {
       <div className="fixed bottom-24 lg:bottom-8 left-4 lg:left-72 p-4 bg-on-surface text-surface rounded-lg shadow-2xl flex items-center gap-4 z-40 hidden md:flex">
         <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
         <div className="text-[10px] font-mono leading-none tracking-tight">
-          AGENTE GENLAYER<br />0x76...D7B4 ACTIVO
+          AGENTE GENLAYER<br />0xa4e2...A907 ACTIVO
         </div>
       </div>
     </div>

@@ -126,6 +126,14 @@ Without EarnWhile, users earn **$0** on limit-order capital. With EarnWhile, use
 | MockAave (5% APY) | [`0x5E2F0B6D5F9a13D45bbfe1CB5EfF4AA9dcc154e4`](https://testnet.snowtrace.io/address/0x5E2F0B6D5F9a13D45bbfe1CB5EfF4AA9dcc154e4) |
 | MockCompound (3% APY) | [`0x3bace74c7363EFf07090b86Ba26673424dd69766`](https://testnet.snowtrace.io/address/0x3bace74c7363EFf07090b86Ba26673424dd69766) |
 
+## Deployed AI Agent (GenLayer Bradbury Testnet -- Chain ID 4221)
+
+| Contract | Address |
+|---|---|
+| YieldAgent | [`0xa4e2b2F012306D11b9B049982e36a38f3147A907`](https://explorer-bradbury.genlayer.com/) |
+
+**TX Hash:** `0xdf22b173f35595d5951749f5f695b847be4c3c23ce2d086869b3134f4e0e43fa`
+
 ---
 
 ## Live Demo
@@ -158,7 +166,9 @@ npm run dev               # http://localhost:5173
 cd agent
 pip install -r requirements.txt
 python -m pytest tests/ -v
-# Deploy to GenLayer Bradbury testnet via studio.genlayer.com
+# Deployed to GenLayer Bradbury testnet
+# Contract: 0xa4e2b2F012306D11b9B049982e36a38f3147A907
+# Explorer: https://explorer-bradbury.genlayer.com/
 ```
 
 ## Project Structure
