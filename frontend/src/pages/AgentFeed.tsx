@@ -60,12 +60,12 @@ export default function AgentFeed() {
     <div className="bg-background font-body text-on-surface min-h-screen flex">
       <SideNavBar />
 
-      <main className="flex-1 ml-64 min-h-screen">
-        <header className="fixed top-0 right-0 left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-12 h-20">
+      <main className="flex-1 lg:ml-64 min-h-screen pb-20 lg:pb-0">
+        <header className="fixed top-0 right-0 left-0 lg:left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-4 lg:px-12 h-16 lg:h-20">
           <ConnectWallet />
         </header>
 
-        <div className="pt-28 pb-24 px-12">
+        <div className="pt-24 lg:pt-28 pb-24 px-4 lg:px-12">
         {/* Header */}
         <header className="mb-20 flex flex-col md:flex-row justify-between items-end gap-8">
           <div className="max-w-2xl">
@@ -210,7 +210,7 @@ export default function AgentFeed() {
       </main>
 
       {/* Floating badge */}
-      <div className="fixed bottom-8 left-72 p-4 bg-on-surface text-surface rounded-lg shadow-2xl flex items-center gap-4 z-40 hidden md:flex">
+      <div className="fixed bottom-24 lg:bottom-8 left-4 lg:left-72 p-4 bg-on-surface text-surface rounded-lg shadow-2xl flex items-center gap-4 z-40 hidden md:flex">
         <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
         <div className="text-[10px] font-mono leading-none tracking-tight">
           AGENTE GENLAYER<br />0x76...D7B4 ACTIVO

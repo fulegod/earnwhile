@@ -94,12 +94,12 @@ export default function CreateOrder() {
     <div className="bg-background font-body text-on-surface min-h-screen flex">
       <SideNavBar />
 
-      <main className="flex-1 ml-64 min-h-screen">
-        <header className="fixed top-0 right-0 left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-12 h-20">
+      <main className="flex-1 lg:ml-64 min-h-screen pb-20 lg:pb-0">
+        <header className="fixed top-0 right-0 left-0 lg:left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-end items-center px-4 lg:px-12 h-16 lg:h-20">
           <ConnectWallet />
         </header>
 
-        <div className="pt-28 pb-24 px-12">
+        <div className="pt-24 lg:pt-28 pb-24 px-4 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12">
           <div className="lg:col-span-8 space-y-20">
             {/* Step 1: Asset */}
