@@ -432,7 +432,7 @@ export default function Dashboard() {
 
               {/* Promo */}
               <div className="relative rounded-xl overflow-hidden aspect-[4/5] flex flex-col justify-end p-8 text-white group cursor-pointer">
-                <img src="/images/promo.png" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src="/images/promo.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-on-surface via-on-surface/30 to-transparent" />
                 <div className="relative z-10 space-y-2">
                   <p className="text-[10px] font-label font-bold uppercase tracking-[0.2em] opacity-80">Acceso Institucional</p>

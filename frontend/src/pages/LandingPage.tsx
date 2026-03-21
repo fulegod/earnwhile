@@ -37,9 +37,9 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Hero Image — positioned right, doesn't overlap text */}
-          <div className="absolute right-0 top-32 w-[500px] h-[500px] pointer-events-none hidden lg:block opacity-80">
-            <img src="/images/hero.png" alt="" className="w-full h-full object-contain" />
+          {/* Hero Image - contained to right side */}
+          <div className="absolute right-12 top-1/2 -translate-y-1/2 w-[480px] h-[480px] pointer-events-none hidden lg:block">
+            <img src="/images/hero-4k.jpg" alt="" className="w-full h-full object-contain drop-shadow-2xl" />
           </div>
         </section>
 
@@ -50,21 +50,22 @@ export default function LandingPage() {
               <span className="font-label text-xs uppercase tracking-[0.2em] text-outline mb-12">
                 Infraestructura de Grado Institucional
               </span>
-              <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
-                <div className="flex items-center gap-3 opacity-60">
-                  <img src="/tokens/avax.png" alt="Avalanche" className="w-8 h-8 rounded-full" />
-                  <span className="font-headline font-extrabold text-lg">AVALANCHE</span>
+              <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8 opacity-40 grayscale">
+                <div className="flex items-center gap-3">
+                  <img src="/tokens/avax.png" alt="Avalanche" className="w-10 h-10 rounded-full" />
+                  <span className="font-headline font-extrabold text-xl">AVALANCHE</span>
                 </div>
-                <div className="flex items-center gap-3 opacity-60">
-                  <span className="font-headline font-extrabold text-lg">GENLAYER</span>
+                <div className="flex items-center gap-3">
+                  <img src="/tokens/genlayer.png" alt="GenLayer" className="w-10 h-10 rounded-full" />
+                  <span className="font-headline font-extrabold text-xl">GENLAYER</span>
                 </div>
-                <div className="flex items-center gap-3 opacity-60">
-                  <img src="/tokens/aave.png" alt="Aave" className="w-8 h-8 rounded-full" />
-                  <span className="font-headline font-extrabold text-lg">AAVE</span>
+                <div className="flex items-center gap-3">
+                  <img src="/tokens/aave.png" alt="Aave" className="w-10 h-10 rounded-full" />
+                  <span className="font-headline font-extrabold text-xl">AAVE</span>
                 </div>
-                <div className="flex items-center gap-3 opacity-60">
-                  <img src="/tokens/compound.png" alt="Compound" className="w-8 h-8 rounded-full" />
-                  <span className="font-headline font-extrabold text-lg">COMPOUND</span>
+                <div className="flex items-center gap-3">
+                  <img src="/tokens/compound.png" alt="Compound" className="w-10 h-10 rounded-full" />
+                  <span className="font-headline font-extrabold text-xl">COMPOUND</span>
                 </div>
               </div>
             </div>
@@ -158,7 +159,7 @@ export default function LandingPage() {
                   </p>
                 </div>
                 <div className="w-full h-48 bg-surface-container-low rounded-xl mt-8 overflow-hidden">
-                  <img src="/images/feature1.png" alt="Multi-vault network" className="w-full h-full object-cover opacity-70" />
+                  <img src="/images/feature1.jpg" alt="Multi-vault network" className="w-full h-full object-cover opacity-70" />
                 </div>
               </div>
 
@@ -189,7 +190,7 @@ export default function LandingPage() {
 
               <div className="md:col-span-2 p-12 bg-surface-container-lowest rounded-[2rem] flex items-center gap-12">
                 <div className="w-1/3 h-full rounded-2xl overflow-hidden hidden md:block">
-                  <img src="/images/feature2.png" alt="Blockchain security" className="w-full h-full object-cover" />
+                  <img src="/images/feature2.jpg" alt="Blockchain security" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-headline text-3xl font-bold mb-4">Dashboard Institucional</h3>
@@ -206,8 +207,7 @@ export default function LandingPage() {
         </section>
 
         {/* Footer CTA */}
-        <footer className="relative py-32 overflow-hidden">
-          <img src="/images/cta-bg.png" alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+        <footer className="bg-white py-32">
           <div className="max-w-[1440px] mx-auto px-8 flex flex-col items-center text-center">
             <h2 className="font-headline text-6xl md:text-7xl font-extrabold tracking-tighter mb-12">
               ¿Listo para el <br />
