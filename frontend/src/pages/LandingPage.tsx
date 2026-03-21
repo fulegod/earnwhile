@@ -8,7 +8,7 @@ export default function LandingPage() {
 
       <main className="relative">
         {/* Hero */}
-        <section className="min-h-screen flex flex-col justify-center px-8 pt-32 pb-20 hero-gradient">
+        <section className="relative min-h-screen flex flex-col justify-center px-8 pt-32 pb-20 hero-gradient overflow-hidden">
           <div className="max-w-[1440px] mx-auto w-full editorial-grid">
             <div className="col-span-12 lg:col-span-8 lg:col-start-1">
               <span className="inline-block px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-semibold tracking-widest uppercase mb-8">
@@ -84,8 +84,8 @@ export default function LandingPage() {
               </p>
               <div className="p-8 bg-surface-container-low rounded-2xl">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center">
-                    <span className="material-symbols-outlined text-on-primary-container">auto_awesome</span>
+                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                    <span className="material-symbols-outlined text-on-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>sync</span>
                   </div>
                   <div>
                     <h4 className="font-headline font-bold">Rebalanceo Autónomo</h4>
@@ -188,8 +188,8 @@ export default function LandingPage() {
                 <div className="text-6xl font-headline font-extrabold opacity-20">0.00%</div>
               </div>
 
-              <div className="md:col-span-2 p-12 bg-surface-container-lowest rounded-[2rem] flex items-center gap-12">
-                <div className="w-1/3 h-full rounded-2xl overflow-hidden hidden md:block">
+              <div className="md:col-span-2 p-12 bg-surface-container-lowest rounded-[2rem] flex items-center gap-12 min-h-[250px]">
+                <div className="w-1/3 h-[200px] rounded-2xl overflow-hidden hidden md:block flex-shrink-0">
                   <img src="/images/feature2.jpg" alt="Blockchain security" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1">
