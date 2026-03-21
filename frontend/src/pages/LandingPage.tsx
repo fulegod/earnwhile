@@ -37,19 +37,9 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* SVG Art */}
-          <div className="absolute right-0 top-1/4 w-1/3 h-2/3 opacity-20 pointer-events-none hidden lg:block">
-            <svg className="w-full h-full" fill="none" viewBox="0 0 400 600">
-              <path d="M100 500C150 400 50 300 200 150C350 0 380 200 390 350" stroke="url(#hero-grad)" strokeWidth="0.5" />
-              <circle cx="200" cy="150" r="80" stroke="url(#hero-grad)" strokeWidth="0.5" />
-              <circle cx="200" cy="150" r="120" stroke="url(#hero-grad)" strokeDasharray="2 4" strokeWidth="0.5" />
-              <defs>
-                <linearGradient id="hero-grad" x1="0" x2="400" y1="0" y2="600" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#006c52" />
-                  <stop offset="1" stopColor="#75edc4" />
-                </linearGradient>
-              </defs>
-            </svg>
+          {/* Hero Image */}
+          <div className="absolute right-0 top-1/4 w-1/2 h-2/3 opacity-60 pointer-events-none hidden lg:block">
+            <img src="/images/hero.png" alt="" className="w-full h-full object-cover" />
           </div>
         </section>
 
@@ -157,7 +147,9 @@ export default function LandingPage() {
                     Escaneamos 400+ pools de liquidez por segundo para asegurar que tu capital nunca se quede quieto. Integración directa con Aave, Compound y BENQI.
                   </p>
                 </div>
-                <div className="w-full h-48 bg-surface-container-low rounded-xl mt-8" />
+                <div className="w-full h-48 bg-surface-container-low rounded-xl mt-8 overflow-hidden">
+                  <img src="/images/feature1.png" alt="Multi-vault network" className="w-full h-full object-cover opacity-70" />
+                </div>
               </div>
 
               <div className="p-12 bg-on-surface text-surface rounded-[2rem] flex flex-col justify-between">
@@ -186,7 +178,9 @@ export default function LandingPage() {
               </div>
 
               <div className="md:col-span-2 p-12 bg-surface-container-lowest rounded-[2rem] flex items-center gap-12">
-                <div className="w-1/3 h-full rounded-2xl overflow-hidden hidden md:block bg-surface-container-high" />
+                <div className="w-1/3 h-full rounded-2xl overflow-hidden hidden md:block">
+                  <img src="/images/feature2.png" alt="Blockchain security" className="w-full h-full object-cover" />
+                </div>
                 <div className="flex-1">
                   <h3 className="font-headline text-3xl font-bold mb-4">Dashboard Institucional</h3>
                   <p className="text-on-surface-variant text-lg mb-8">

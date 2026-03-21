@@ -13,9 +13,7 @@ export default function SideNavBar() {
   return (
     <aside className="h-screen w-64 bg-[#f8f8f4] flex flex-col p-6 gap-y-2 border-r border-outline-variant/15 fixed left-0 top-0 z-40">
       <div className="mb-10 px-2 flex items-center gap-3">
-        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-          <span className="material-symbols-outlined text-white" style={{ fontVariationSettings: "'FILL' 1" }}>eco</span>
-        </div>
+        <img src="/images/logo.png" alt="EarnWhile" className="w-8 h-8 rounded-lg" />
         <Link to="/" className="font-headline font-bold text-xl tracking-tighter text-on-surface">EarnWhile</Link>
       </div>
 
