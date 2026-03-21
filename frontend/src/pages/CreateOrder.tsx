@@ -170,7 +170,7 @@ export default function CreateOrder() {
                   </label>
                   <div className="flex items-end gap-4">
                     <input
-                      className="bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-6xl font-headline font-bold p-0 w-full max-w-[300px] transition-all outline-none"
+                      className="bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-4xl md:text-6xl font-headline font-bold p-0 w-full max-w-[200px] md:max-w-[300px] transition-all outline-none"
                       placeholder="2000"
                       type="number"
                       value={limitPrice}
