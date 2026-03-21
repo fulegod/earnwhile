@@ -13,7 +13,8 @@ export default function TopNavBar({ active = 'markets' }: { active?: string }) {
     <header className="fixed top-0 w-full z-50 bg-background/70 backdrop-blur-3xl">
       <nav className="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto">
         <div className="flex items-center gap-8">
-          <Link to="/" className="text-xl font-bold tracking-tighter text-on-surface font-headline">
+          <Link to="/" className="flex items-center gap-2 text-xl font-bold tracking-tighter text-on-surface font-headline">
+            <img src="/images/logo.png" alt="" className="w-7 h-7" />
             EarnWhile
           </Link>
           <div className="hidden md:flex items-center gap-8">

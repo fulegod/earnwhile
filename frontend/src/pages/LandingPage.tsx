@@ -30,14 +30,9 @@ export default function LandingPage() {
                   Lanzar App
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </Link>
-                <a
-                  href="https://github.com/fulegod/earnwhile"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-10 py-5 rounded-lg text-lg font-headline font-bold text-primary hover:bg-surface-container-low transition-all"
-                >
+                <button className="px-10 py-5 rounded-lg text-lg font-headline font-bold text-primary hover:bg-surface-container-low transition-all">
                   Ver Documentación
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -61,7 +56,7 @@ export default function LandingPage() {
                   <span className="font-headline font-extrabold text-xl">AVALANCHE</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <img src="/tokens/genlayer.svg" alt="GenLayer" className="w-10 h-10 rounded-full" />
+                  <img src="/tokens/genlayer.svg" alt="GenLayer" className="w-10 h-10" />
                   <span className="font-headline font-extrabold text-xl">GENLAYER</span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -176,10 +171,10 @@ export default function LandingPage() {
                     Cada vault recibe un puntaje de riesgo en tiempo real basado en la salud del smart contract y la volatilidad del TVL.
                   </p>
                 </div>
-                <Link className="text-primary-container font-headline font-bold flex items-center gap-2 group" to="/app/agent">
+                <a className="text-primary-container font-headline font-bold flex items-center gap-2 group" href="#">
                   Motor de Riesgo
                   <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </Link>
+                </a>
               </div>
 
               <div className="p-12 bg-primary-container text-on-primary-container rounded-[2rem] flex flex-col justify-between">
@@ -233,17 +228,17 @@ export default function LandingPage() {
               <div className="col-span-6 lg:col-span-2 text-left">
                 <h5 className="font-label text-[10px] uppercase tracking-widest text-outline mb-6">Protocolo</h5>
                 <ul className="space-y-4 text-sm font-medium">
-                  <li><Link className="hover:text-primary transition-colors" to="/">Mercados</Link></li>
-                  <li><Link className="hover:text-primary transition-colors" to="/app/agent">Gobernanza</Link></li>
-                  <li><Link className="hover:text-primary transition-colors" to="/app">Seguridad</Link></li>
+                  <li><a className="hover:text-primary transition-colors" href="#">Mercados</a></li>
+                  <li><a className="hover:text-primary transition-colors" href="#">Gobernanza</a></li>
+                  <li><a className="hover:text-primary transition-colors" href="#">Seguridad</a></li>
                 </ul>
               </div>
               <div className="col-span-6 lg:col-span-2 text-left">
                 <h5 className="font-label text-[10px] uppercase tracking-widest text-outline mb-6">Recursos</h5>
                 <ul className="space-y-4 text-sm font-medium">
-                  <li><a className="hover:text-primary transition-colors" href="https://github.com/fulegod/earnwhile" target="_blank" rel="noopener noreferrer">Documentación</a></li>
-                  <li><a className="hover:text-primary transition-colors" href="https://github.com/fulegod/earnwhile" target="_blank" rel="noopener noreferrer">Referencia API</a></li>
-                  <li><a className="hover:text-primary transition-colors" href="https://github.com/fulegod/earnwhile" target="_blank" rel="noopener noreferrer">Recursos de Marca</a></li>
+                  <li><a className="hover:text-primary transition-colors" href="#">Documentación</a></li>
+                  <li><a className="hover:text-primary transition-colors" href="#">Referencia API</a></li>
+                  <li><a className="hover:text-primary transition-colors" href="#">Recursos de Marca</a></li>
                 </ul>
               </div>
               <div className="col-span-12 lg:col-span-4 text-left lg:text-right mt-12 lg:mt-0">
