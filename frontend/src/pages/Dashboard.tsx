@@ -252,11 +252,11 @@ export default function Dashboard() {
 
         <div className="pt-24 md:pt-32 pb-24 px-4 md:px-12 max-w-7xl mx-auto">
           {/* Stats */}
-          <section className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-12 mb-12 lg:mb-20">
-            <div className="space-y-2 lg:space-y-4 p-4 lg:p-0 bg-surface-container-lowest lg:bg-transparent rounded-xl lg:rounded-none">
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-12 mb-8 md:mb-20">
+            <div className="space-y-2 md:space-y-4 p-4 md:p-0 bg-surface-container-lowest md:bg-transparent rounded-xl md:rounded-none">
               <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">Total Depositado</span>
               <div className="flex items-baseline gap-2">
-                <h2 className="text-3xl lg:text-5xl font-headline font-extrabold tracking-tighter text-on-surface">
+                <h2 className="text-2xl md:text-5xl font-headline font-extrabold tracking-tighter text-on-surface">
                   {vaultLoading && isConnected ? (
                     <span className="animate-pulse text-outline-variant">...</span>
                   ) : (
@@ -267,9 +267,9 @@ export default function Dashboard() {
               </div>
               <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">{totalDepositedSub}</p>
             </div>
-            <div className="space-y-2 lg:space-y-4 p-4 lg:p-0 bg-surface-container-lowest lg:bg-transparent rounded-xl lg:rounded-none">
+            <div className="space-y-2 md:space-y-4 p-4 md:p-0 bg-surface-container-lowest md:bg-transparent rounded-xl md:rounded-none">
               <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">APY Promedio</span>
-              <h2 className="text-3xl lg:text-5xl font-headline font-extrabold tracking-tighter text-primary">
+              <h2 className="text-2xl md:text-5xl font-headline font-extrabold tracking-tighter text-primary">
                 {rateLoading ? (
                   <span className="animate-pulse text-outline-variant">...</span>
                 ) : (
@@ -278,9 +278,9 @@ export default function Dashboard() {
               </h2>
               <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">{apySub}</p>
             </div>
-            <div className="space-y-2 lg:space-y-4 p-4 lg:p-0 bg-surface-container-lowest lg:bg-transparent rounded-xl lg:rounded-none">
+            <div className="space-y-2 md:space-y-4 p-4 md:p-0 bg-surface-container-lowest md:bg-transparent rounded-xl md:rounded-none">
               <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">Órdenes Activas</span>
-              <h2 className="text-3xl lg:text-5xl font-headline font-extrabold tracking-tighter text-on-surface">
+              <h2 className="text-2xl md:text-5xl font-headline font-extrabold tracking-tighter text-on-surface">
                 {ordersLoading && isConnected ? (
                   <span className="animate-pulse text-outline-variant">...</span>
                 ) : (
@@ -291,13 +291,13 @@ export default function Dashboard() {
             </div>
           </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
             {/* Chart + Table */}
-            <div className="lg:col-span-8 space-y-8">
-              <div className="flex justify-between items-end">
+            <div className="md:col-span-8 space-y-8">
+              <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4">
                 <div>
-                  <h3 className="text-2xl font-headline font-bold tracking-tight text-on-surface">Comparación de Yield</h3>
-                  <p className="text-on-surface-variant text-sm mt-1">EarnWhile vs. Benchmarks del Mercado (30D)</p>
+                  <h3 className="text-xl md:text-2xl font-headline font-bold tracking-tight text-on-surface">Comparación de Yield</h3>
+                  <p className="text-on-surface-variant text-xs md:text-sm mt-1">EarnWhile vs. Benchmarks del Mercado (30D)</p>
                 </div>
                 <div className="flex gap-4">
                   <div className="flex items-center gap-2">
@@ -373,7 +373,7 @@ export default function Dashboard() {
             </div>
 
             {/* Right sidebar */}
-            <div className="lg:col-span-4 space-y-8 lg:space-y-12">
+            <div className="md:col-span-4 space-y-8 md:space-y-12">
               {/* AI Insight */}
               <div className="bg-surface-container-low rounded-xl p-8 space-y-6 editorial-shadow">
                 <div className="flex items-center gap-2">
