@@ -35,7 +35,9 @@ export default function CreateOrder() {
   const { isLoading: isOrderConfirming, isSuccess: orderDone } = useWaitForTransactionReceipt({ hash: orderHash })
 
   const formattedBalance = usdcBalance ? formatUnits(usdcBalance as bigint, 6) : '0'
-  const bestApy = bestRateData ? Number((bestRateData as readonly [bigint, bigint])[1]) / 100 : 5.0
+  const baseApy = bestRateData ? Number((bestRateData as readonly [bigint, bigint])[1]) / 100 : 5.0
+  const apyMultiplier: Record<string, number> = { vault: 1.0, swap: 2.2, safe: 0.6 }
+  const bestApy = baseApy * (apyMultiplier[strategy] || 1.0)
   const dailyYield = amount ? (parseFloat(amount) * bestApy / 100 / 365).toFixed(4) : '0.00'
 
   const handleMint = () => {
