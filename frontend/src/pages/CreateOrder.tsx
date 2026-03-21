@@ -7,9 +7,9 @@ import { useUSDCBalance, useBestRate } from '../hooks/useContracts'
 import { CONTRACTS, ERC20_ABI, ORDERBOOK_ABI } from '../config/contracts'
 
 const strategies = [
-  { id: 'vault', icon: 'account_balance', name: 'Base Vault', desc: 'Capital en el vault EarnWhile generando yield automático via AI Agent.' },
-  { id: 'swap', icon: 'swap_horizontal_circle', name: 'Liquid Swap', desc: 'Auto-swap a stablecoin de mayor yield mientras espera.' },
-  { id: 'wallet', icon: 'wallet', name: 'Wallet Hold', desc: 'El capital permanece en tu wallet hasta la ejecución.' },
+  { id: 'vault', icon: 'account_balance', name: 'Base Vault', desc: 'Tu capital se deposita en el vault de EarnWhile. El AI Agent lo despliega automáticamente a los mejores protocolos de yield (Aave, BENQI, Compound) via Optimistic Democracy. Rendimiento estimado: 5-12% APY.' },
+  { id: 'swap', icon: 'swap_horizontal_circle', name: 'Liquid Swap', desc: 'Tu capital se convierte automáticamente a la stablecoin con mayor rendimiento disponible. Ideal si querés maximizar yield sin importar en qué token esperás. Rebalanceo cada bloque.' },
+  { id: 'wallet', icon: 'wallet', name: 'Wallet Hold', desc: 'Sin yield. Tu capital permanece en tu wallet sin moverse hasta que la orden se ejecute. Máxima seguridad, cero rendimiento. Solo recomendado si el precio objetivo está muy cerca.' },
 ]
 
 export default function CreateOrder() {
