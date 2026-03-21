@@ -50,13 +50,12 @@ export default function LandingPage() {
               <span className="font-label text-xs uppercase tracking-[0.2em] text-outline mb-12">
                 Infraestructura de Grado Institucional
               </span>
-              <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8 opacity-40 grayscale">
+              <div className="flex flex-wrap justify-center items-center gap-x-20 gap-y-8 opacity-40 grayscale">
                 <div className="flex items-center gap-3">
                   <img src="/tokens/avax.png" alt="Avalanche" className="w-10 h-10 rounded-full" />
                   <span className="font-headline font-extrabold text-xl">AVALANCHE</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <img src="/tokens/genlayer.svg" alt="GenLayer" className="w-10 h-10" />
                   <span className="font-headline font-extrabold text-xl">GENLAYER</span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -171,10 +170,10 @@ export default function LandingPage() {
                     Cada vault recibe un puntaje de riesgo en tiempo real basado en la salud del smart contract y la volatilidad del TVL.
                   </p>
                 </div>
-                <a className="text-primary-container font-headline font-bold flex items-center gap-2 group" href="#">
+                <Link className="text-primary-container font-headline font-bold flex items-center gap-2 group" to="/app/agent">
                   Motor de Riesgo
                   <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </a>
+                </Link>
               </div>
 
               <div className="p-12 bg-primary-container text-on-primary-container rounded-[2rem] flex flex-col justify-between">
@@ -220,7 +219,10 @@ export default function LandingPage() {
             </div>
             <div className="w-full editorial-grid border-t border-outline-variant/15 pt-12">
               <div className="col-span-12 lg:col-span-4 text-left mb-12 lg:mb-0">
-                <div className="text-2xl font-headline font-bold tracking-tighter mb-6">EarnWhile</div>
+                <div className="text-2xl font-headline font-bold tracking-tighter mb-6 flex items-center gap-2">
+                  <img src="/images/logo.png" alt="" className="w-8 h-8" />
+                  EarnWhile
+                </div>
                 <p className="text-on-surface-variant text-sm max-w-xs">
                   Un nuevo estándar en gestión autónoma de liquidez. Precisión editorial para activos digitales.
                 </p>
@@ -228,17 +230,17 @@ export default function LandingPage() {
               <div className="col-span-6 lg:col-span-2 text-left">
                 <h5 className="font-label text-[10px] uppercase tracking-widest text-outline mb-6">Protocolo</h5>
                 <ul className="space-y-4 text-sm font-medium">
-                  <li><a className="hover:text-primary transition-colors" href="#">Mercados</a></li>
-                  <li><a className="hover:text-primary transition-colors" href="#">Gobernanza</a></li>
-                  <li><a className="hover:text-primary transition-colors" href="#">Seguridad</a></li>
+                  <li><Link className="hover:text-primary transition-colors" to="/app">Dashboard</Link></li>
+                  <li><Link className="hover:text-primary transition-colors" to="/app/create">Crear Orden</Link></li>
+                  <li><Link className="hover:text-primary transition-colors" to="/app/agent">AI Agent</Link></li>
                 </ul>
               </div>
               <div className="col-span-6 lg:col-span-2 text-left">
                 <h5 className="font-label text-[10px] uppercase tracking-widest text-outline mb-6">Recursos</h5>
                 <ul className="space-y-4 text-sm font-medium">
-                  <li><a className="hover:text-primary transition-colors" href="#">Documentación</a></li>
-                  <li><a className="hover:text-primary transition-colors" href="#">Referencia API</a></li>
-                  <li><a className="hover:text-primary transition-colors" href="#">Recursos de Marca</a></li>
+                  <li><a className="hover:text-primary transition-colors" href="https://github.com/fulegod/earnwhile" target="_blank" rel="noreferrer">GitHub</a></li>
+                  <li><a className="hover:text-primary transition-colors" href="https://testnet.snowtrace.io/address/0xaa7E2BAE9b702612985F19eEcc8765a28c74E453" target="_blank" rel="noreferrer">Contratos (Fuji)</a></li>
+                  <li><a className="hover:text-primary transition-colors" href="https://studio.genlayer.com" target="_blank" rel="noreferrer">GenLayer Studio</a></li>
                 </ul>
               </div>
               <div className="col-span-12 lg:col-span-4 text-left lg:text-right mt-12 lg:mt-0">

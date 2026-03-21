@@ -4,7 +4,6 @@ const navItems = [
   { icon: 'dashboard', label: 'Resumen', href: '/app' },
   { icon: 'add_circle', label: 'Crear Orden', href: '/app/create' },
   { icon: 'smart_toy', label: 'AI Agent', href: '/app/agent' },
-  { icon: 'settings', label: 'Configuración', href: '#' },
 ]
 
 export default function SideNavBar() {
