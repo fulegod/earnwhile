@@ -91,7 +91,7 @@ export default function CreateOrder() {
 
   return (
     <div className="bg-background font-body text-on-surface min-h-screen">
-      <TopNavBar active="vaults" />
+      <TopNavBar active="create" />
 
       <main className="pt-32 pb-24 px-8 max-w-[1440px] mx-auto min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12">

@@ -244,14 +244,13 @@ export default function Dashboard() {
         <header className="fixed top-0 right-0 left-64 z-30 bg-background/70 backdrop-blur-3xl flex justify-between items-center px-12 h-20">
           <nav className="hidden md:flex gap-8 items-center">
             {[
-              { label: 'Mercados', active: true },
-              { label: 'Vaults', active: false },
-              { label: 'Gobernanza', active: false },
-              { label: 'Docs', active: false },
+              { label: 'Dashboard', href: '/app', active: true },
+              { label: 'Crear Orden', href: '/app/create', active: false },
+              { label: 'AI Agent', href: '/app/agent', active: false },
             ].map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href="#"
+                to={link.href}
                 className={
                   link.active
                     ? 'text-primary border-b-2 border-primary pb-1 font-headline tracking-tight font-medium'
@@ -259,7 +258,7 @@ export default function Dashboard() {
                 }
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="flex items-center gap-6">

@@ -4,9 +4,9 @@ import ConnectWallet from './ConnectWallet'
 export default function TopNavBar({ active = 'markets' }: { active?: string }) {
   const links = [
     { id: 'markets', label: 'Mercados', href: '/' },
-    { id: 'vaults', label: 'Vaults', href: '/app' },
-    { id: 'governance', label: 'Gobernanza', href: '/app/agent' },
-    { id: 'docs', label: 'Docs', href: '#' },
+    { id: 'vaults', label: 'Dashboard', href: '/app' },
+    { id: 'create', label: 'Crear Orden', href: '/app/create' },
+    { id: 'agent', label: 'AI Agent', href: '/app/agent' },
   ]
 
   return (

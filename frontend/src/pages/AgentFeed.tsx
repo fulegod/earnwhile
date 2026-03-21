@@ -57,7 +57,7 @@ export default function AgentFeed() {
 
   return (
     <div className="bg-background font-body text-on-surface">
-      <TopNavBar active="governance" />
+      <TopNavBar active="agent" />
 
       <main className="pt-32 pb-24 px-8 max-w-[1440px] mx-auto">
         {/* Header */}
