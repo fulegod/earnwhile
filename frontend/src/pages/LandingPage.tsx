@@ -38,8 +38,8 @@ export default function LandingPage() {
           </div>
 
           {/* Hero Image */}
-          <div className="absolute right-0 top-1/4 w-1/2 h-2/3 opacity-60 pointer-events-none hidden lg:block">
-            <img src="/images/hero.png" alt="" className="w-full h-full object-cover" />
+          <div className="absolute right-0 top-0 w-2/3 h-full pointer-events-none hidden lg:block">
+            <img src="/images/hero.png" alt="" className="w-full h-full object-cover" style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 30%)' }} />
           </div>
         </section>
 
@@ -50,12 +50,22 @@ export default function LandingPage() {
               <span className="font-label text-xs uppercase tracking-[0.2em] text-outline mb-12">
                 Infraestructura de Grado Institucional
               </span>
-              <div className="flex flex-wrap justify-center gap-x-20 gap-y-12 opacity-40 grayscale contrast-125">
-                {['AVALANCHE', 'GENLAYER', 'AAVE', 'COMPOUND'].map((name) => (
-                  <div key={name} className="flex items-center gap-2 font-headline font-extrabold text-2xl">
-                    {name}
-                  </div>
-                ))}
+              <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8 opacity-50 grayscale contrast-125">
+                <div className="flex items-center gap-3">
+                  <img src="/tokens/avax.png" alt="Avalanche" className="w-8 h-8" />
+                  <span className="font-headline font-extrabold text-xl">AVALANCHE</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="font-headline font-extrabold text-xl">GENLAYER</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img src="/tokens/usdc.png" alt="USDC" className="w-8 h-8" />
+                  <span className="font-headline font-extrabold text-xl">AAVE</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img src="/tokens/compound.png" alt="Compound" className="w-8 h-8" />
+                  <span className="font-headline font-extrabold text-xl">COMPOUND</span>
+                </div>
               </div>
             </div>
           </div>

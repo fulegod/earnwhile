@@ -8,9 +8,9 @@ import { CONTRACTS, ORDERBOOK_ABI } from '../config/contracts'
 
 // Mock data as fallback when wallet is not connected
 const mockDeposits = [
-  { symbol: 'USDC', name: 'USDC StableVault', network: 'Avalanche Fuji', value: '$450,230.12', apy: '12.4%', strategy: 'Delta-Neutral Basis' },
-  { symbol: 'ETH', name: 'Ether LST Multiplicador', network: 'Avalanche Fuji', value: '$892,110.45', apy: '6.1%', strategy: 'LST Re-staking' },
-  { symbol: 'AVAX', name: 'AVAX Yield Max', network: 'Avalanche Fuji', value: '$124,500.00', apy: '18.2%', strategy: 'BENQI Liquid Staking' },
+  { symbol: 'USDC', name: 'USDC StableVault', network: 'Avalanche Fuji', value: '$450,230.12', apy: '12.4%', strategy: 'Delta-Neutral Basis', logo: '/tokens/usdc.png' },
+  { symbol: 'ETH', name: 'Ether LST Multiplicador', network: 'Avalanche Fuji', value: '$892,110.45', apy: '6.1%', strategy: 'LST Re-staking', logo: '/tokens/eth.png' },
+  { symbol: 'AVAX', name: 'AVAX Yield Max', network: 'Avalanche Fuji', value: '$124,500.00', apy: '18.2%', strategy: 'BENQI Liquid Staking', logo: '/tokens/avax.png' },
 ]
 
 const events = [
@@ -19,14 +19,18 @@ const events = [
   { time: 'AYER', text: 'Reporte mensual de yield (Marzo) disponible.', detail: 'Portafolio creció 1.2% sobre benchmark.', color: 'bg-outline-variant' },
 ]
 
-// Map token addresses to symbols
-const TOKEN_SYMBOLS: Record<string, string> = {
-  [CONTRACTS.MockUSDC.toLowerCase()]: 'USDC',
-  [CONTRACTS.MockWETH.toLowerCase()]: 'WETH',
+// Map token addresses to symbols and logos
+const TOKEN_INFO: Record<string, { symbol: string; logo: string }> = {
+  [CONTRACTS.MockUSDC.toLowerCase()]: { symbol: 'USDC', logo: '/tokens/usdc.png' },
+  [CONTRACTS.MockWETH.toLowerCase()]: { symbol: 'WETH', logo: '/tokens/eth.png' },
 }
 
 function getTokenSymbol(address: string): string {
-  return TOKEN_SYMBOLS[address.toLowerCase()] || `${address.slice(0, 6)}...${address.slice(-4)}`
+  return TOKEN_INFO[address.toLowerCase()]?.symbol || `${address.slice(0, 6)}...${address.slice(-4)}`
+}
+
+function getTokenLogo(address: string): string {
+  return TOKEN_INFO[address.toLowerCase()]?.logo || '/tokens/eth.png'
 }
 
 const STATUS_LABELS: Record<number, string> = {
@@ -108,9 +112,7 @@ function OrdersTable({ activeOrderIds }: { activeOrderIds: readonly bigint[] }) 
                 </td>
                 <td className="py-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary text-[10px]">
-                      {buySymbol}
-                    </div>
+                    <img src={getTokenLogo(tokenBuy)} alt={buySymbol} className="w-8 h-8 rounded-full" />
                     <div>
                       <p className="font-medium text-sm">{buySymbol}/{paySymbol}</p>
                       <p className="text-xs text-on-surface-variant">Avalanche Fuji</p>
@@ -169,9 +171,7 @@ function MockDepositsTable() {
             <tr key={d.symbol} className="group hover:bg-surface-container-low transition-colors">
               <td className="py-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary text-xs">
-                    {d.symbol}
-                  </div>
+                  <img src={d.logo} alt={d.symbol} className="w-8 h-8 rounded-full" />
                   <div>
                     <p className="font-medium text-sm">{d.name}</p>
                     <p className="text-xs text-on-surface-variant">{d.network}</p>

@@ -106,9 +106,7 @@ export default function CreateOrder() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="group relative p-6 bg-surface-container-lowest border border-outline-variant/15 rounded-xl ring-2 ring-primary">
                   <div className="flex justify-between items-start mb-4">
-                    <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
-                      <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>monetization_on</span>
-                    </div>
+                    <img src="/tokens/usdc.png" alt="USDC" className="w-12 h-12 rounded-full" />
                     <span className="material-symbols-outlined text-primary">check_circle</span>
                   </div>
                   <h3 className="font-headline font-bold text-xl">USDC</h3>
@@ -122,9 +120,7 @@ export default function CreateOrder() {
                 </div>
                 <div className="group relative p-6 bg-surface-container-lowest border border-outline-variant/15 rounded-xl opacity-50">
                   <div className="flex justify-between items-start mb-4">
-                    <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
-                      <span className="material-symbols-outlined text-on-surface-variant">token</span>
-                    </div>
+                    <img src="/tokens/eth.png" alt="WETH" className="w-12 h-12 rounded-full" />
                   </div>
                   <h3 className="font-headline font-bold text-xl">WETH</h3>
                   <p className="text-on-surface-variant text-sm mt-1">Wrapped Ether · Token</p>
