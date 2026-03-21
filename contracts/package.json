@@ -1,0 +1,23 @@
+{
+  "name": "earnwhile-contracts",
+  "version": "1.0.0",
+  "description": "EarnWhile - Yield layer for idle capital in limit orders on Avalanche",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:fuji": "hardhat run scripts/deploy.ts --network fuji",
+    "deploy:local": "hardhat run scripts/deploy.ts --network hardhat",
+    "node": "hardhat node"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@types/node": "^20.11.5",
+    "hardhat": "^2.19.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.1",
+    "dotenv": "^17.3.1"
+  }
+}

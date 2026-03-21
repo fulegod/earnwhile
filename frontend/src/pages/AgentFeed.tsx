@@ -1,0 +1,167 @@
+import TopNavBar from '../components/TopNavBar'
+
+const logs = [
+  { time: '14:22:01', tag: 'INFO', color: 'text-primary', msg: 'Escaneando 142 protocolos para delta de liquidez...' },
+  { time: '14:22:05', tag: 'EXEC', color: 'text-primary', msg: 'Ejecutando enrutamiento flash-loan a través de Trader Joe y BENQI' },
+  { time: '14:22:12', tag: 'YIELD', color: 'text-primary-fixed-dim font-bold', msg: 'Yield Optimizado (+1.24% Delta) en USDC-AVAX Vault' },
+  { time: '14:23:45', tag: 'INFO', color: 'text-primary', msg: 'Optimización de gas activa: 14 Gwei detectado. Agrupando transacciones...' },
+  { time: '14:24:10', tag: 'RISK', color: 'text-error', msg: 'Alerta de volatilidad en pool sAVAX/AVAX. Protocolo retirando liquidez a safety-tier-1' },
+  { time: '14:25:01', tag: 'INFO', color: 'text-primary', msg: 'Enrutando $42.1M a través de ruta optimizada: Avalanche > Aave > BENQI' },
+  { time: '14:25:30', tag: 'YIELD', color: 'text-primary-fixed-dim font-bold', msg: 'Rotación de estrategia completa. Nueva proyección APY: 8.42%' },
+  { time: '14:26:15', tag: 'INFO', color: 'text-primary', msg: 'Validador GenLayer #2 confirma consenso de estrategia via Optimistic Democracy' },
+  { time: '14:27:00', tag: 'EXEC', color: 'text-primary', msg: 'Rebalanceo ejecutado: 60% Aave V3, 25% BENQI, 15% Trader Joe' },
+]
+
+const diagnostics = [
+  { label: 'Carga Cognitiva', type: 'bar', value: 66 },
+  { label: 'Latencia de Bloque', type: 'text', value: '1.2ms' },
+  { label: 'Fuentes de Datos', type: 'text', value: '142 protocolos' },
+  { label: 'Modo de Riesgo', type: 'badge', value: 'Balanceado' },
+]
+
+export default function AgentFeed() {
+  return (
+    <div className="bg-background font-body text-on-surface">
+      <TopNavBar active="governance" />
+
+      <main className="pt-32 pb-24 px-8 max-w-[1440px] mx-auto">
+        {/* Header */}
+        <header className="mb-20 flex flex-col md:flex-row justify-between items-end gap-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-xs font-label uppercase tracking-[0.2em] font-semibold text-primary">Autonomía en Vivo</span>
+            </div>
+            <h1 className="text-5xl md:text-6xl font-headline font-extrabold tracking-tighter text-on-surface mb-6">
+              Terminal de Inteligencia <span className="text-outline">del Agente</span>
+            </h1>
+            <p className="text-lg text-on-surface-variant leading-relaxed opacity-80">
+              Feed de ejecución en tiempo real del motor de optimización autónomo de EarnWhile. Rebalanceo de alta frecuencia a través de 142 protocolos de liquidez integrados.
+            </p>
+          </div>
+          <div className="flex flex-col items-end">
+            <span className="text-[0.65rem] font-label uppercase tracking-widest text-on-surface-variant mb-1">Estado del Sistema</span>
+            <span className="text-sm font-mono font-medium text-primary bg-primary-container/20 px-3 py-1 rounded-full">
+              Operacional // v1.0.0
+            </span>
+          </div>
+        </header>
+
+        {/* Bento */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          {/* Feed */}
+          <div className="md:col-span-7 lg:col-span-8 flex flex-col gap-8">
+            <section className="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/15 flex-grow">
+              <div className="flex justify-between items-center mb-10">
+                <h2 className="font-headline text-xl font-bold tracking-tight">Operaciones Activas</h2>
+                <div className="flex gap-4">
+                  <span className="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">filter_list</span>
+                  <span className="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">download</span>
+                </div>
+              </div>
+              <div className="space-y-1 font-mono text-[13px] leading-relaxed">
+                {logs.map((log, i) => (
+                  <div key={i} className="flex gap-4 py-3 group hover:bg-surface-container-low px-4 -mx-4 rounded-lg transition-all">
+                    <span className="text-outline/40 select-none">{log.time}</span>
+                    <span className={`${log.color} font-semibold`}>[{log.tag}]</span>
+                    <span className="text-on-surface">{log.msg}</span>
+                  </div>
+                ))}
+                <div className="pt-8 opacity-40 italic">
+                  &gt; Esperando confirmación del próximo bloque...
+                </div>
+              </div>
+            </section>
+          </div>
+
+          {/* Right */}
+          <div className="md:col-span-5 lg:col-span-4 flex flex-col gap-8">
+            {/* Capital */}
+            <section className="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10">
+              <div className="mb-8">
+                <span className="text-xs font-label uppercase tracking-widest text-on-surface-variant block mb-2">Capital Gestionado</span>
+                <div className="text-4xl font-headline font-extrabold tracking-tighter">$1,248,392,104</div>
+                <div className="text-primary text-sm font-medium mt-1">+0.42% desde última época</div>
+              </div>
+              <div className="h-32 w-full relative group">
+                <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 40">
+                  <defs>
+                    <linearGradient id="agent-grad" x1="0%" x2="0%" y1="0%" y2="100%">
+                      <stop offset="0%" style={{ stopColor: '#006c52', stopOpacity: 0.15 }} />
+                      <stop offset="100%" style={{ stopColor: '#006c52', stopOpacity: 0 }} />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 35 Q 10 32, 20 30 T 40 25 T 60 15 T 80 18 T 100 5" fill="none" stroke="#006c52" strokeWidth="1.5" />
+                  <path d="M0 35 Q 10 32, 20 30 T 40 25 T 60 15 T 80 18 T 100 5 V 40 H 0 Z" fill="url(#agent-grad)" />
+                </svg>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mt-8 border-t border-outline-variant/15 pt-8">
+                <div>
+                  <span className="text-[0.6rem] font-label uppercase text-on-surface-variant tracking-tighter">Total Trades</span>
+                  <div className="text-xl font-headline font-bold">14,892</div>
+                </div>
+                <div>
+                  <span className="text-[0.6rem] font-label uppercase text-on-surface-variant tracking-tighter">Tasa de Éxito</span>
+                  <div className="text-xl font-headline font-bold">99.98%</div>
+                </div>
+              </div>
+            </section>
+
+            {/* Diagnostics */}
+            <section className="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/15">
+              <h3 className="font-headline text-lg font-bold tracking-tight mb-6">Diagnósticos del Agente</h3>
+              <div className="space-y-6">
+                {diagnostics.map((d) => (
+                  <div key={d.label} className="flex justify-between items-center">
+                    <span className="text-sm font-body text-on-surface-variant">{d.label}</span>
+                    {d.type === 'bar' ? (
+                      <div className="w-24 h-1.5 bg-secondary-container rounded-full overflow-hidden">
+                        <div className="h-full bg-primary" style={{ width: `${d.value}%` }} />
+                      </div>
+                    ) : d.type === 'badge' ? (
+                      <span className="px-2 py-0.5 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold rounded uppercase">
+                        {d.value}
+                      </span>
+                    ) : (
+                      <span className="text-sm font-mono font-medium">{d.value}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <button className="w-full mt-8 py-3 bg-surface-container text-on-surface text-sm font-semibold rounded-md border border-outline-variant/20 hover:bg-surface-container-high transition-colors">
+                Ver Log de Auditoría
+              </button>
+            </section>
+
+            {/* Transparency */}
+            <div className="p-6 bg-primary/5 rounded-xl border-l-2 border-primary">
+              <p className="text-xs text-primary leading-relaxed">
+                <strong>Protocolo de Transparencia:</strong> Cada instrucción en este feed está firmada criptográficamente por el Cluster de Agentes EarnWhile y es verificable on-chain a través de GenLayer Optimistic Democracy.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="mt-24 pt-12 border-t border-outline-variant/15 flex flex-col md:flex-row justify-between items-center opacity-60">
+          <div className="text-sm font-label uppercase tracking-widest mb-4 md:mb-0">
+            © 2026 EarnWhile Protocol
+          </div>
+          <div className="flex gap-8">
+            <a className="text-xs font-label uppercase tracking-widest hover:text-primary transition-colors" href="#">Twitter</a>
+            <a className="text-xs font-label uppercase tracking-widest hover:text-primary transition-colors" href="#">Github</a>
+            <a className="text-xs font-label uppercase tracking-widest hover:text-primary transition-colors" href="#">Discord</a>
+          </div>
+        </footer>
+      </main>
+
+      {/* Floating badge */}
+      <div className="fixed bottom-8 left-8 p-4 bg-on-surface text-surface rounded-lg shadow-2xl flex items-center gap-4 z-40 hidden md:flex">
+        <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+        <div className="text-[10px] font-mono leading-none tracking-tight">
+          AGENTE DESCENTRALIZADO<br />NOBLE_7 ACTIVO
+        </div>
+      </div>
+    </div>
+  )
+}

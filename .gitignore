@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.vercel/
+.env
+.env.local
+.env.*.local
+.DS_Store
+.stitch/
+.tmp/
+
+# Hardhat
+contracts/cache/
+contracts/artifacts/
+contracts/typechain-types/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+agent/.genlayer/
