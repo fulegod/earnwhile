@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import TopNavBar from '../components/TopNavBar'
 
 // Real data from GenLayer evaluate_strategy execution
@@ -36,6 +37,24 @@ const diagnostics = [
 ]
 
 export default function AgentFeed() {
+  const [visibleLogs, setVisibleLogs] = useState(0)
+  const [cycle, setCycle] = useState(0)
+
+  useEffect(() => {
+    if (visibleLogs < logs.length) {
+      const delay = visibleLogs === 0 ? 500 : 800 + Math.random() * 1200
+      const timer = setTimeout(() => setVisibleLogs(v => v + 1), delay)
+      return () => clearTimeout(timer)
+    } else {
+      // Restart after all logs shown
+      const timer = setTimeout(() => {
+        setVisibleLogs(0)
+        setCycle(c => c + 1)
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [visibleLogs, cycle])
+
   return (
     <div className="bg-background font-body text-on-surface">
       <TopNavBar active="governance" />
@@ -76,16 +95,28 @@ export default function AgentFeed() {
                 </div>
               </div>
               <div className="space-y-1 font-mono text-[13px] leading-relaxed">
-                {logs.map((log, i) => (
-                  <div key={i} className="flex gap-4 py-3 group hover:bg-surface-container-low px-4 -mx-4 rounded-lg transition-all">
+                {logs.slice(0, visibleLogs).map((log, i) => (
+                  <div
+                    key={`${cycle}-${i}`}
+                    className="flex gap-4 py-3 group hover:bg-surface-container-low px-4 -mx-4 rounded-lg transition-all animate-[fadeIn_0.3s_ease-in]"
+                    style={{ animation: i === visibleLogs - 1 ? 'fadeIn 0.3s ease-in' : undefined }}
+                  >
                     <span className="text-outline/40 select-none">{log.time}</span>
                     <span className={`${log.color} font-semibold`}>[{log.tag}]</span>
                     <span className="text-on-surface">{log.msg}</span>
                   </div>
                 ))}
-                <div className="pt-8 opacity-40 italic">
-                  &gt; Esperando confirmación del próximo bloque...
-                </div>
+                {visibleLogs < logs.length && (
+                  <div className="pt-4 flex items-center gap-2 text-primary/60">
+                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                    <span className="italic text-sm">Procesando...</span>
+                  </div>
+                )}
+                {visibleLogs >= logs.length && (
+                  <div className="pt-8 opacity-40 italic">
+                    &gt; Ciclo completo. Reiniciando monitoreo...
+                  </div>
+                )}
               </div>
             </section>
           </div>
