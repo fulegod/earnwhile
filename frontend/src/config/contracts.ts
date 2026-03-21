@@ -32,6 +32,7 @@ export const ORDERBOOK_ABI = [
   { type: "function", name: "getActiveOrders", stateMutability: "view", inputs: [{ name: "user", type: "address" }], outputs: [{ type: "uint256[]" }] },
   { type: "function", name: "orderCount", stateMutability: "view", inputs: [], outputs: [{ type: "uint256" }] },
   { type: "function", name: "orders", stateMutability: "view", inputs: [{ name: "", type: "uint256" }], outputs: [{ name: "id", type: "uint256" }, { name: "maker", type: "address" }, { name: "tokenBuy", type: "address" }, { name: "tokenPay", type: "address" }, { name: "limitPrice", type: "uint256" }, { name: "amount", type: "uint256" }, { name: "side", type: "uint8" }, { name: "status", type: "uint8" }, { name: "createdAt", type: "uint256" }] },
+  { type: "function", name: "getOrder", stateMutability: "view", inputs: [{ name: "orderId", type: "uint256" }], outputs: [{ name: "orderId", type: "uint256" }, { name: "maker", type: "address" }, { name: "tokenBuy", type: "address" }, { name: "tokenPay", type: "address" }, { name: "limitPrice", type: "uint256" }, { name: "amount", type: "uint256" }, { name: "side", type: "uint8" }, { name: "status", type: "uint8" }, { name: "createdAt", type: "uint256" }] },
 ] as const
 
 export const YIELD_ROUTER_ABI = [

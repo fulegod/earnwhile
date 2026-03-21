@@ -44,4 +44,22 @@ export function useActiveOrders() {
   })
 }
 
+export function useOrderDetails(orderId: bigint | undefined) {
+  return useReadContract({
+    address: CONTRACTS.OrderBook,
+    abi: ORDERBOOK_ABI,
+    functionName: 'orders',
+    args: orderId !== undefined ? [orderId] : undefined,
+    query: { enabled: orderId !== undefined },
+  })
+}
+
+export function useOrderCount() {
+  return useReadContract({
+    address: CONTRACTS.OrderBook,
+    abi: ORDERBOOK_ABI,
+    functionName: 'orderCount',
+  })
+}
+
 export { formatUnits, parseUnits }

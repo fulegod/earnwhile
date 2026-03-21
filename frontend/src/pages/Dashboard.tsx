@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom'
+import { useAccount } from 'wagmi'
+import { useReadContracts } from 'wagmi'
 import ConnectWallet from '../components/ConnectWallet'
 import SideNavBar from '../components/SideNavBar'
+import { useVaultBalance, useBestRate, useActiveOrders, formatUnits } from '../hooks/useContracts'
+import { CONTRACTS, ORDERBOOK_ABI } from '../config/contracts'
 
-const deposits = [
+// Mock data as fallback when wallet is not connected
+const mockDeposits = [
   { symbol: 'USDC', name: 'USDC StableVault', network: 'Avalanche Fuji', value: '$450,230.12', apy: '12.4%', strategy: 'Delta-Neutral Basis' },
   { symbol: 'ETH', name: 'Ether LST Multiplicador', network: 'Avalanche Fuji', value: '$892,110.45', apy: '6.1%', strategy: 'LST Re-staking' },
   { symbol: 'AVAX', name: 'AVAX Yield Max', network: 'Avalanche Fuji', value: '$124,500.00', apy: '18.2%', strategy: 'BENQI Liquid Staking' },
@@ -14,7 +19,222 @@ const events = [
   { time: 'AYER', text: 'Reporte mensual de yield (Marzo) disponible.', detail: 'Portafolio creció 1.2% sobre benchmark.', color: 'bg-outline-variant' },
 ]
 
+// Map token addresses to symbols
+const TOKEN_SYMBOLS: Record<string, string> = {
+  [CONTRACTS.MockUSDC.toLowerCase()]: 'USDC',
+  [CONTRACTS.MockWETH.toLowerCase()]: 'WETH',
+}
+
+function getTokenSymbol(address: string): string {
+  return TOKEN_SYMBOLS[address.toLowerCase()] || `${address.slice(0, 6)}...${address.slice(-4)}`
+}
+
+const STATUS_LABELS: Record<number, string> = {
+  0: 'Activa',
+  1: 'Ejecutada',
+  2: 'Cancelada',
+}
+
+const SIDE_LABELS: Record<number, string> = {
+  0: 'Compra',
+  1: 'Venta',
+}
+
+function OrdersTable({ activeOrderIds }: { activeOrderIds: readonly bigint[] }) {
+  // Batch read all order details using useReadContracts
+  const contracts = activeOrderIds.map((orderId) => ({
+    address: CONTRACTS.OrderBook as `0x${string}`,
+    abi: ORDERBOOK_ABI,
+    functionName: 'orders' as const,
+    args: [orderId] as const,
+  }))
+
+  const { data: ordersData, isLoading } = useReadContracts({ contracts })
+
+  if (isLoading) {
+    return (
+      <div className="py-12 text-center">
+        <span className="material-symbols-outlined text-primary animate-spin text-3xl">progress_activity</span>
+        <p className="text-sm text-on-surface-variant mt-3">Cargando órdenes...</p>
+      </div>
+    )
+  }
+
+  if (!ordersData || ordersData.length === 0) {
+    return (
+      <div className="py-12 text-center space-y-4">
+        <span className="material-symbols-outlined text-outline-variant text-5xl">inbox</span>
+        <p className="text-on-surface-variant text-sm">No tenés órdenes activas</p>
+        <Link
+          to="/app/create"
+          className="inline-block bg-on-surface text-surface px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-primary transition-colors"
+        >
+          Crear Orden
+        </Link>
+      </div>
+    )
+  }
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-left border-collapse">
+        <thead>
+          <tr className="text-[10px] font-label font-bold text-outline uppercase tracking-[0.2em] border-b border-outline-variant/20">
+            <th className="py-4">ID</th>
+            <th className="py-4">Par</th>
+            <th className="py-4">Tipo</th>
+            <th className="py-4">Monto</th>
+            <th className="py-4">Precio Límite</th>
+            <th className="py-4">Estado</th>
+            <th className="py-4 text-right">Acción</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-outline-variant/10">
+          {ordersData.map((result, i) => {
+            if (result.status !== 'success' || !result.result) return null
+            const order = result.result as readonly [bigint, string, string, string, bigint, bigint, number, number, bigint]
+            const [id, , tokenBuy, tokenPay, limitPrice, amount, side, status] = order
+            const buySymbol = getTokenSymbol(tokenBuy)
+            const paySymbol = getTokenSymbol(tokenPay)
+            const formattedAmount = formatUnits(amount, 18)
+            const formattedPrice = formatUnits(limitPrice, 18)
+            const sideNum = Number(side)
+            const statusNum = Number(status)
+
+            return (
+              <tr key={i} className="group hover:bg-surface-container-low transition-colors">
+                <td className="py-6">
+                  <span className="text-xs font-mono text-on-surface-variant">#{Number(id)}</span>
+                </td>
+                <td className="py-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary text-[10px]">
+                      {buySymbol}
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm">{buySymbol}/{paySymbol}</p>
+                      <p className="text-xs text-on-surface-variant">Avalanche Fuji</p>
+                    </div>
+                  </div>
+                </td>
+                <td className="py-6">
+                  <span className={`px-2 py-1 rounded-full text-xs font-bold ${sideNum === 0 ? 'bg-primary-container/30 text-primary' : 'bg-tertiary-container/30 text-tertiary'}`}>
+                    {SIDE_LABELS[sideNum] || 'Desconocido'}
+                  </span>
+                </td>
+                <td className="py-6 font-medium text-sm">
+                  {parseFloat(formattedAmount).toLocaleString('es-AR', { maximumFractionDigits: 4 })}
+                </td>
+                <td className="py-6 text-sm text-on-surface-variant">
+                  {parseFloat(formattedPrice).toLocaleString('es-AR', { maximumFractionDigits: 6 })}
+                </td>
+                <td className="py-6">
+                  <span className={`px-2 py-1 rounded-full text-xs font-bold ${
+                    statusNum === 0 ? 'bg-primary-container/30 text-primary' :
+                    statusNum === 1 ? 'bg-secondary-container/30 text-secondary' :
+                    'bg-outline-variant/30 text-outline'
+                  }`}>
+                    {STATUS_LABELS[statusNum] || 'Desconocido'}
+                  </span>
+                </td>
+                <td className="py-6 text-right">
+                  <button className="text-on-surface-variant hover:text-primary transition-colors">
+                    <span className="material-symbols-outlined">more_horiz</span>
+                  </button>
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+function MockDepositsTable() {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-left border-collapse">
+        <thead>
+          <tr className="text-[10px] font-label font-bold text-outline uppercase tracking-[0.2em] border-b border-outline-variant/20">
+            <th className="py-4">Activo / Vault</th>
+            <th className="py-4">Valor Actual</th>
+            <th className="py-4">Yield</th>
+            <th className="py-4">Estrategia</th>
+            <th className="py-4 text-right">Acción</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-outline-variant/10">
+          {mockDeposits.map((d) => (
+            <tr key={d.symbol} className="group hover:bg-surface-container-low transition-colors">
+              <td className="py-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary text-xs">
+                    {d.symbol}
+                  </div>
+                  <div>
+                    <p className="font-medium text-sm">{d.name}</p>
+                    <p className="text-xs text-on-surface-variant">{d.network}</p>
+                  </div>
+                </div>
+              </td>
+              <td className="py-6 font-medium text-sm">{d.value}</td>
+              <td className="py-6">
+                <span className="bg-primary-container/30 text-primary px-2 py-1 rounded-full text-xs font-bold">
+                  {d.apy} APY
+                </span>
+              </td>
+              <td className="py-6 text-sm text-on-surface-variant">{d.strategy}</td>
+              <td className="py-6 text-right">
+                <button className="text-on-surface-variant hover:text-primary transition-colors">
+                  <span className="material-symbols-outlined">more_horiz</span>
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 export default function Dashboard() {
+  const { isConnected } = useAccount()
+
+  // Read vault balance (USDC)
+  const { data: vaultBalance, isLoading: vaultLoading } = useVaultBalance(CONTRACTS.MockUSDC)
+
+  // Read best rate from YieldRouter
+  const { data: bestRateData, isLoading: rateLoading } = useBestRate()
+
+  // Read active orders
+  const { data: activeOrderIds, isLoading: ordersLoading } = useActiveOrders()
+
+  // Format stats
+  const totalDeposited = isConnected && vaultBalance !== undefined
+    ? `$${parseFloat(formatUnits(vaultBalance as bigint, 6)).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+    : '$2,840,122'
+
+  const apyDisplay = bestRateData
+    ? `${(Number((bestRateData as readonly [bigint, bigint])[1]) / 100).toFixed(2)}%`
+    : '8.42%'
+
+  const activeOrderCount = isConnected && activeOrderIds
+    ? (activeOrderIds as readonly bigint[]).length
+    : 14
+
+  const totalDepositedSub = isConnected
+    ? 'Balance en el vault EarnWhile.'
+    : 'Conectá tu wallet para ver datos reales.'
+
+  const apySub = bestRateData
+    ? 'Mejor tasa disponible en YieldRouter.'
+    : 'Rendimiento neto de fees del protocolo.'
+
+  const ordersSub = isConnected
+    ? 'Órdenes activas en el OrderBook.'
+    : 'Conectá tu wallet para ver tus órdenes.'
+
   return (
     <div className="flex min-h-screen">
       <SideNavBar />
@@ -56,20 +276,38 @@ export default function Dashboard() {
             <div className="space-y-4">
               <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">Total Depositado</span>
               <div className="flex items-baseline gap-2">
-                <h2 className="text-5xl font-headline font-extrabold tracking-tighter text-on-surface">$2,840,122</h2>
-                <span className="text-primary text-sm font-bold font-label">+12.4%</span>
+                <h2 className="text-5xl font-headline font-extrabold tracking-tighter text-on-surface">
+                  {vaultLoading && isConnected ? (
+                    <span className="animate-pulse text-outline-variant">...</span>
+                  ) : (
+                    totalDeposited
+                  )}
+                </h2>
+                {!isConnected && <span className="text-primary text-sm font-bold font-label">+12.4%</span>}
               </div>
-              <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">Liquidez agregada en 14 intents del protocolo.</p>
+              <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">{totalDepositedSub}</p>
             </div>
             <div className="space-y-4">
               <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">APY Promedio</span>
-              <h2 className="text-5xl font-headline font-extrabold tracking-tighter text-primary">8.42%</h2>
-              <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">Rendimiento neto de fees del protocolo y optimización de gas.</p>
+              <h2 className="text-5xl font-headline font-extrabold tracking-tighter text-primary">
+                {rateLoading ? (
+                  <span className="animate-pulse text-outline-variant">...</span>
+                ) : (
+                  apyDisplay
+                )}
+              </h2>
+              <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">{apySub}</p>
             </div>
             <div className="space-y-4">
               <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">Órdenes Activas</span>
-              <h2 className="text-5xl font-headline font-extrabold tracking-tighter text-on-surface">14</h2>
-              <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">Smart contracts rebalanceando activamente para yield óptimo.</p>
+              <h2 className="text-5xl font-headline font-extrabold tracking-tighter text-on-surface">
+                {ordersLoading && isConnected ? (
+                  <span className="animate-pulse text-outline-variant">...</span>
+                ) : (
+                  activeOrderCount
+                )}
+              </h2>
+              <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">{ordersSub}</p>
             </div>
           </section>
 
@@ -120,53 +358,37 @@ export default function Dashboard() {
               {/* Table */}
               <div className="pt-12">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-xl font-headline font-bold tracking-tight text-on-surface">Depósitos Activos</h3>
+                  <h3 className="text-xl font-headline font-bold tracking-tight text-on-surface">
+                    {isConnected ? 'Órdenes Activas' : 'Depósitos Activos'}
+                  </h3>
                   <Link to="/app/create" className="text-primary font-label text-xs font-bold uppercase tracking-widest hover:underline underline-offset-4">
                     + Nueva Orden
                   </Link>
                 </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="text-[10px] font-label font-bold text-outline uppercase tracking-[0.2em] border-b border-outline-variant/20">
-                        <th className="py-4">Activo / Vault</th>
-                        <th className="py-4">Valor Actual</th>
-                        <th className="py-4">Yield</th>
-                        <th className="py-4">Estrategia</th>
-                        <th className="py-4 text-right">Acción</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-outline-variant/10">
-                      {deposits.map((d) => (
-                        <tr key={d.symbol} className="group hover:bg-surface-container-low transition-colors">
-                          <td className="py-6">
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary text-xs">
-                                {d.symbol}
-                              </div>
-                              <div>
-                                <p className="font-medium text-sm">{d.name}</p>
-                                <p className="text-xs text-on-surface-variant">{d.network}</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="py-6 font-medium text-sm">{d.value}</td>
-                          <td className="py-6">
-                            <span className="bg-primary-container/30 text-primary px-2 py-1 rounded-full text-xs font-bold">
-                              {d.apy} APY
-                            </span>
-                          </td>
-                          <td className="py-6 text-sm text-on-surface-variant">{d.strategy}</td>
-                          <td className="py-6 text-right">
-                            <button className="text-on-surface-variant hover:text-primary transition-colors">
-                              <span className="material-symbols-outlined">more_horiz</span>
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+
+                {isConnected ? (
+                  activeOrderIds && (activeOrderIds as readonly bigint[]).length > 0 ? (
+                    <OrdersTable activeOrderIds={activeOrderIds as readonly bigint[]} />
+                  ) : ordersLoading ? (
+                    <div className="py-12 text-center">
+                      <span className="material-symbols-outlined text-primary animate-spin text-3xl">progress_activity</span>
+                      <p className="text-sm text-on-surface-variant mt-3">Cargando órdenes...</p>
+                    </div>
+                  ) : (
+                    <div className="py-12 text-center space-y-4">
+                      <span className="material-symbols-outlined text-outline-variant text-5xl">inbox</span>
+                      <p className="text-on-surface-variant text-sm">No tenés órdenes activas</p>
+                      <Link
+                        to="/app/create"
+                        className="inline-block bg-on-surface text-surface px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-primary transition-colors"
+                      >
+                        Crear Orden
+                      </Link>
+                    </div>
+                  )
+                ) : (
+                  <MockDepositsTable />
+                )}
               </div>
             </div>
 
