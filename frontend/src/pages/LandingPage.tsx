@@ -77,46 +77,46 @@ export default function LandingPage() {
               <p className="text-on-surface-variant text-xl">Tres pasos. Cero fricción.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
               {/* Step 01 */}
-              <div className="flex flex-col items-center text-center px-8 relative">
-                <span className="font-label text-[11px] uppercase tracking-[0.2em] text-primary font-bold mb-4">Paso 01</span>
-                <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-8">
-                  <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>account_balance_wallet</span>
+              <div className="flex flex-col items-center px-6 relative">
+                <span className="font-label text-[11px] uppercase tracking-[0.2em] text-primary font-bold mb-6">Paso 01</span>
+                <div className="w-28 h-28 rounded-3xl bg-primary/10 flex items-center justify-center mb-8">
+                  <span className="material-symbols-outlined text-5xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>account_balance_wallet</span>
                 </div>
-                <h3 className="font-headline text-2xl font-bold mb-4">Creá tu Orden</h3>
-                <p className="text-on-surface-variant leading-relaxed max-w-xs">
-                  Configurá una limit order como siempre — comprar ETH a $2,000, vender AVAX a $20. Tu capital queda en el smart contract.
+                <h3 className="font-headline text-2xl font-bold mb-4 text-center">Creá tu Orden</h3>
+                <p className="text-on-surface-variant leading-relaxed text-justify">
+                  Configurá una limit order como siempre — comprar ETH a $2,000, vender AVAX a $20. Tu capital se deposita en el smart contract y queda listo para generar rendimiento.
                 </p>
                 {/* Connector arrow (desktop only) */}
-                <div className="hidden md:block absolute top-[72px] -right-4 w-8 h-[2px] bg-outline-variant/30" />
-                <div className="hidden md:block absolute top-[68px] -right-4 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-outline-variant/30" />
+                <div className="hidden md:block absolute top-[88px] -right-2 w-6 h-[2px] bg-outline-variant/30" />
+                <div className="hidden md:block absolute top-[84px] -right-2 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-outline-variant/30" />
               </div>
 
               {/* Step 02 */}
-              <div className="flex flex-col items-center text-center px-8 relative mt-12 md:mt-0">
-                <span className="font-label text-[11px] uppercase tracking-[0.2em] text-primary font-bold mb-4">Paso 02</span>
-                <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-8">
-                  <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>smart_toy</span>
+              <div className="flex flex-col items-center px-6 relative mt-12 md:mt-0">
+                <span className="font-label text-[11px] uppercase tracking-[0.2em] text-primary font-bold mb-6">Paso 02</span>
+                <div className="w-28 h-28 rounded-3xl bg-primary/10 flex items-center justify-center mb-8">
+                  <span className="material-symbols-outlined text-5xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>smart_toy</span>
                 </div>
-                <h3 className="font-headline text-2xl font-bold mb-4">El AI Agent Optimiza</h3>
-                <p className="text-on-surface-variant leading-relaxed max-w-xs">
-                  Nuestro agente en GenLayer evalúa 5+ protocolos de yield via Optimistic Democracy y despliega tu capital al mejor rendimiento.
+                <h3 className="font-headline text-2xl font-bold mb-4 text-center">El AI Agent Optimiza</h3>
+                <p className="text-on-surface-variant leading-relaxed text-justify">
+                  Nuestro agente en GenLayer evalúa 5+ protocolos de yield (Aave, BENQI, Compound) usando Optimistic Democracy con 5 validadores independientes. Despliega tu capital al mejor rendimiento disponible.
                 </p>
                 {/* Connector arrow (desktop only) */}
-                <div className="hidden md:block absolute top-[72px] -right-4 w-8 h-[2px] bg-outline-variant/30" />
-                <div className="hidden md:block absolute top-[68px] -right-4 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-outline-variant/30" />
+                <div className="hidden md:block absolute top-[88px] -right-2 w-6 h-[2px] bg-outline-variant/30" />
+                <div className="hidden md:block absolute top-[84px] -right-2 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-outline-variant/30" />
               </div>
 
               {/* Step 03 */}
-              <div className="flex flex-col items-center text-center px-8 mt-12 md:mt-0">
-                <span className="font-label text-[11px] uppercase tracking-[0.2em] text-primary font-bold mb-4">Paso 03</span>
-                <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-8">
-                  <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>trending_up</span>
+              <div className="flex flex-col items-center px-6 mt-12 md:mt-0">
+                <span className="font-label text-[11px] uppercase tracking-[0.2em] text-primary font-bold mb-6">Paso 03</span>
+                <div className="w-28 h-28 rounded-3xl bg-primary/10 flex items-center justify-center mb-8">
+                  <span className="material-symbols-outlined text-5xl text-primary" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>trending_up</span>
                 </div>
-                <h3 className="font-headline text-2xl font-bold mb-4">Ganás Mientras Esperás</h3>
-                <p className="text-on-surface-variant leading-relaxed max-w-xs">
-                  Tu capital genera yield automáticamente. Cuando el precio objetivo se alcanza, el agente retira y ejecuta tu orden.
+                <h3 className="font-headline text-2xl font-bold mb-4 text-center">Ganás Mientras Esperás</h3>
+                <p className="text-on-surface-variant leading-relaxed text-justify">
+                  Tu capital genera yield automáticamente mientras espera que se ejecute tu orden. Cuando el precio objetivo se alcanza, el agente retira los fondos del protocolo y ejecuta la compra o venta.
                 </p>
               </div>
             </div>
