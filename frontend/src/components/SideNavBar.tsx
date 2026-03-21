@@ -2,8 +2,8 @@ import { Link, useLocation } from 'react-router-dom'
 
 const navItems = [
   { icon: 'dashboard', label: 'Resumen', href: '/app' },
-  { icon: 'account_balance_wallet', label: 'Portafolio', href: '/app/create' },
-  { icon: 'history', label: 'Historial', href: '#' },
+  { icon: 'add_circle', label: 'Crear Orden', href: '/app/create' },
+  { icon: 'smart_toy', label: 'AI Agent', href: '/app/agent' },
   { icon: 'settings', label: 'Configuración', href: '#' },
 ]
 
