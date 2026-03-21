@@ -224,18 +224,18 @@ export default function CreateOrder() {
                 <h2 className="text-4xl font-headline font-extrabold tracking-tight mt-2">Estrategia de Espera</h2>
                 <p className="text-on-surface-variant mt-2">Define dónde descansa tu capital mientras espera el yield objetivo.</p>
               </header>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
                 {strategies.map((s) => (
                   <div
                     key={s.id}
                     onClick={() => setStrategy(s.id)}
-                    className={`p-6 bg-surface-container-lowest border border-outline-variant/15 rounded-xl cursor-pointer transition-all ${
+                    className={`p-6 bg-surface-container-lowest border border-outline-variant/15 rounded-xl cursor-pointer transition-all flex flex-col ${
                       strategy === s.id ? 'ring-2 ring-primary' : 'hover:bg-surface-container-low'
                     }`}
                   >
                     <span className={`material-symbols-outlined ${strategy === s.id ? 'text-primary' : 'text-on-surface-variant'} mb-4`}>{s.icon}</span>
-                    <h4 className="font-headline font-bold">{s.name}</h4>
-                    <p className="text-xs text-on-surface-variant mt-2 leading-relaxed">{s.desc}</p>
+                    <h4 className="font-headline font-bold mb-2">{s.name}</h4>
+                    <p className="text-xs text-on-surface-variant leading-relaxed flex-1">{s.desc}</p>
                   </div>
                 ))}
               </div>
