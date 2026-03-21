@@ -315,7 +315,7 @@ export default function Dashboard() {
     : 'Conectá tu wallet para ver tus órdenes.'
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen overflow-x-hidden">
       <SideNavBar />
 
       <main className="flex-1 md:ml-64 min-h-screen pb-20 md:pb-0">

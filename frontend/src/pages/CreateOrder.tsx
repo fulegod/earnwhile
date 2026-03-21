@@ -93,7 +93,7 @@ export default function CreateOrder() {
   const needsOrder = approveDone && !orderDone
 
   return (
-    <div className="bg-background font-body text-on-surface min-h-screen flex">
+    <div className="bg-background font-body text-on-surface min-h-screen flex overflow-x-hidden">
       <SideNavBar />
 
       <main className="flex-1 md:ml-64 min-h-screen pb-20 md:pb-0">
