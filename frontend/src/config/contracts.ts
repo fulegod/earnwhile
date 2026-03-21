@@ -21,8 +21,8 @@ export const ERC20_ABI = [
 export const VAULT_ABI = [
   { type: "function", name: "deposit", stateMutability: "nonpayable", inputs: [{ name: "token", type: "address" }, { name: "amount", type: "uint256" }], outputs: [] },
   { type: "function", name: "withdraw", stateMutability: "nonpayable", inputs: [{ name: "token", type: "address" }, { name: "amount", type: "uint256" }], outputs: [] },
-  { type: "function", name: "getUserBalance", stateMutability: "view", inputs: [{ name: "user", type: "address" }, { name: "token", type: "address" }], outputs: [{ type: "uint256" }] },
-  { type: "function", name: "getUserYieldEarned", stateMutability: "view", inputs: [{ name: "user", type: "address" }, { name: "token", type: "address" }], outputs: [{ type: "uint256" }] },
+  { type: "function", name: "balances", stateMutability: "view", inputs: [{ name: "user", type: "address" }, { name: "token", type: "address" }], outputs: [{ type: "uint256" }] },
+  { type: "function", name: "getBalance", stateMutability: "view", inputs: [{ name: "user", type: "address" }, { name: "token", type: "address" }], outputs: [{ name: "principal", type: "uint256" }, { name: "yieldEarned", type: "uint256" }, { name: "total", type: "uint256" }] },
 ] as const
 
 export const ORDERBOOK_ABI = [

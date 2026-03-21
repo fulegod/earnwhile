@@ -97,7 +97,7 @@ function OrdersTable({ activeOrderIds }: { activeOrderIds: readonly bigint[] }) 
             const buySymbol = getTokenSymbol(tokenBuy)
             const paySymbol = getTokenSymbol(tokenPay)
             const formattedAmount = formatUnits(amount, 18)
-            const formattedPrice = formatUnits(limitPrice, 18)
+            const formattedPrice = formatUnits(limitPrice, 6)
             const sideNum = Number(side)
             const statusNum = Number(status)
 

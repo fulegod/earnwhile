@@ -18,7 +18,7 @@ export function useVaultBalance(token: `0x${string}`) {
   return useReadContract({
     address: CONTRACTS.EarnWhileVault,
     abi: VAULT_ABI,
-    functionName: 'getUserBalance',
+    functionName: 'balances',
     args: address ? [address, token] : undefined,
     query: { enabled: !!address },
   })
