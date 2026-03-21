@@ -80,121 +80,200 @@ function OrdersTable({ activeOrderIds }: { activeOrderIds: readonly bigint[] }) 
   }
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-left border-collapse">
-        <thead>
-          <tr className="text-[10px] font-label font-bold text-outline uppercase tracking-[0.2em] border-b border-outline-variant/20">
-            <th className="py-4">ID</th>
-            <th className="py-4">Par</th>
-            <th className="py-4">Tipo</th>
-            <th className="py-4">Monto</th>
-            <th className="py-4">Precio Límite</th>
-            <th className="py-4">Estado</th>
-            <th className="py-4 text-right">Acción</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-outline-variant/10">
-          {ordersData.map((result, i) => {
-            if (result.status !== 'success' || !result.result) return null
-            const order = result.result as readonly [bigint, string, string, string, bigint, bigint, number, number, bigint]
-            const [id, , tokenBuy, tokenPay, limitPrice, amount, side, status] = order
-            const buySymbol = getTokenSymbol(tokenBuy)
-            const paySymbol = getTokenSymbol(tokenPay)
-            const formattedAmount = formatUnits(amount, 18)
-            const formattedPrice = formatUnits(limitPrice, 6)
-            const sideNum = Number(side)
-            const statusNum = Number(status)
+    <>
+      {/* Mobile: cards */}
+      <div className="md:hidden space-y-4">
+        {ordersData.map((result, i) => {
+          if (result.status !== 'success' || !result.result) return null
+          const order = result.result as readonly [bigint, string, string, string, bigint, bigint, number, number, bigint]
+          const [id, , tokenBuy, tokenPay, limitPrice, amount, side, status] = order
+          const buySymbol = getTokenSymbol(tokenBuy)
+          const paySymbol = getTokenSymbol(tokenPay)
+          const formattedAmount = formatUnits(amount, 18)
+          const formattedPrice = formatUnits(limitPrice, 6)
+          const sideNum = Number(side)
+          const statusNum = Number(status)
 
-            return (
-              <tr key={i} className="group hover:bg-surface-container-low transition-colors">
-                <td className="py-6">
-                  <span className="text-xs font-mono text-on-surface-variant">#{Number(id)}</span>
-                </td>
+          return (
+            <div key={i} className="p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <img src={getTokenLogo(tokenBuy)} alt={buySymbol} className="w-8 h-8 rounded-full" />
+                  <div>
+                    <p className="font-medium text-sm">{buySymbol}/{paySymbol}</p>
+                    <p className="text-xs text-on-surface-variant">#{Number(id)} · Avalanche Fuji</p>
+                  </div>
+                </div>
+                <span className={`px-2 py-1 rounded-full text-xs font-bold ${sideNum === 0 ? 'bg-primary-container/30 text-primary' : 'bg-tertiary-container/30 text-tertiary'}`}>
+                  {SIDE_LABELS[sideNum] || '?'}
+                </span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                <div>
+                  <span className="text-on-surface-variant text-xs">Monto: </span>
+                  <span className="font-bold">{parseFloat(formattedAmount).toLocaleString('es-AR', { maximumFractionDigits: 4 })}</span>
+                </div>
+                <div>
+                  <span className="text-on-surface-variant text-xs">Precio: </span>
+                  <span className="font-medium">{parseFloat(formattedPrice).toLocaleString('es-AR', { maximumFractionDigits: 2 })}</span>
+                </div>
+                <span className={`px-2 py-1 rounded-full text-[10px] font-bold ${
+                  statusNum === 0 ? 'bg-primary-container/30 text-primary' :
+                  statusNum === 1 ? 'bg-secondary-container/30 text-secondary' :
+                  'bg-outline-variant/30 text-outline'
+                }`}>
+                  {STATUS_LABELS[statusNum] || '?'}
+                </span>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Desktop: table */}
+      <div className="hidden md:block overflow-x-auto">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="text-[10px] font-label font-bold text-outline uppercase tracking-[0.2em] border-b border-outline-variant/20">
+              <th className="py-4">ID</th>
+              <th className="py-4">Par</th>
+              <th className="py-4">Tipo</th>
+              <th className="py-4">Monto</th>
+              <th className="py-4">Precio Límite</th>
+              <th className="py-4">Estado</th>
+              <th className="py-4 text-right">Acción</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-outline-variant/10">
+            {ordersData.map((result, i) => {
+              if (result.status !== 'success' || !result.result) return null
+              const order = result.result as readonly [bigint, string, string, string, bigint, bigint, number, number, bigint]
+              const [id, , tokenBuy, tokenPay, limitPrice, amount, side, status] = order
+              const buySymbol = getTokenSymbol(tokenBuy)
+              const paySymbol = getTokenSymbol(tokenPay)
+              const formattedAmount = formatUnits(amount, 18)
+              const formattedPrice = formatUnits(limitPrice, 6)
+              const sideNum = Number(side)
+              const statusNum = Number(status)
+
+              return (
+                <tr key={i} className="group hover:bg-surface-container-low transition-colors">
+                  <td className="py-6">
+                    <span className="text-xs font-mono text-on-surface-variant">#{Number(id)}</span>
+                  </td>
+                  <td className="py-6">
+                    <div className="flex items-center gap-3">
+                      <img src={getTokenLogo(tokenBuy)} alt={buySymbol} className="w-8 h-8 rounded-full" />
+                      <div>
+                        <p className="font-medium text-sm">{buySymbol}/{paySymbol}</p>
+                        <p className="text-xs text-on-surface-variant">Avalanche Fuji</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-6">
+                    <span className={`px-2 py-1 rounded-full text-xs font-bold ${sideNum === 0 ? 'bg-primary-container/30 text-primary' : 'bg-tertiary-container/30 text-tertiary'}`}>
+                      {SIDE_LABELS[sideNum] || 'Desconocido'}
+                    </span>
+                  </td>
+                  <td className="py-6 font-medium text-sm">
+                    {parseFloat(formattedAmount).toLocaleString('es-AR', { maximumFractionDigits: 4 })}
+                  </td>
+                  <td className="py-6 text-sm text-on-surface-variant">
+                    {parseFloat(formattedPrice).toLocaleString('es-AR', { maximumFractionDigits: 6 })}
+                  </td>
+                  <td className="py-6">
+                    <span className={`px-2 py-1 rounded-full text-xs font-bold ${
+                      statusNum === 0 ? 'bg-primary-container/30 text-primary' :
+                      statusNum === 1 ? 'bg-secondary-container/30 text-secondary' :
+                      'bg-outline-variant/30 text-outline'
+                    }`}>
+                      {STATUS_LABELS[statusNum] || 'Desconocido'}
+                    </span>
+                  </td>
+                  <td className="py-6 text-right">
+                    <button className="text-on-surface-variant hover:text-primary transition-colors">
+                      <span className="material-symbols-outlined">more_horiz</span>
+                    </button>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  )
+}
+
+function MockDepositsTable() {
+  return (
+    <>
+      {/* Mobile: cards */}
+      <div className="md:hidden space-y-4">
+        {mockDeposits.map((d) => (
+          <div key={d.symbol} className="p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-3">
+                <img src={d.logo} alt={d.symbol} className="w-8 h-8 rounded-full" />
+                <div>
+                  <p className="font-medium text-sm">{d.name}</p>
+                  <p className="text-xs text-on-surface-variant">{d.network}</p>
+                </div>
+              </div>
+              <span className="bg-primary-container/30 text-primary px-2 py-1 rounded-full text-xs font-bold">
+                {d.apy} APY
+              </span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="font-bold text-sm">{d.value}</span>
+              <span className="text-xs text-on-surface-variant">{d.strategy}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: table */}
+      <div className="hidden md:block overflow-x-auto">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="text-[10px] font-label font-bold text-outline uppercase tracking-[0.2em] border-b border-outline-variant/20">
+              <th className="py-4">Activo / Vault</th>
+              <th className="py-4">Valor Actual</th>
+              <th className="py-4">Yield</th>
+              <th className="py-4">Estrategia</th>
+              <th className="py-4 text-right">Acción</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-outline-variant/10">
+            {mockDeposits.map((d) => (
+              <tr key={d.symbol} className="group hover:bg-surface-container-low transition-colors">
                 <td className="py-6">
                   <div className="flex items-center gap-3">
-                    <img src={getTokenLogo(tokenBuy)} alt={buySymbol} className="w-8 h-8 rounded-full" />
+                    <img src={d.logo} alt={d.symbol} className="w-8 h-8 rounded-full" />
                     <div>
-                      <p className="font-medium text-sm">{buySymbol}/{paySymbol}</p>
-                      <p className="text-xs text-on-surface-variant">Avalanche Fuji</p>
+                      <p className="font-medium text-sm">{d.name}</p>
+                      <p className="text-xs text-on-surface-variant">{d.network}</p>
                     </div>
                   </div>
                 </td>
+                <td className="py-6 font-medium text-sm">{d.value}</td>
                 <td className="py-6">
-                  <span className={`px-2 py-1 rounded-full text-xs font-bold ${sideNum === 0 ? 'bg-primary-container/30 text-primary' : 'bg-tertiary-container/30 text-tertiary'}`}>
-                    {SIDE_LABELS[sideNum] || 'Desconocido'}
+                  <span className="bg-primary-container/30 text-primary px-2 py-1 rounded-full text-xs font-bold">
+                    {d.apy} APY
                   </span>
                 </td>
-                <td className="py-6 font-medium text-sm">
-                  {parseFloat(formattedAmount).toLocaleString('es-AR', { maximumFractionDigits: 4 })}
-                </td>
-                <td className="py-6 text-sm text-on-surface-variant">
-                  {parseFloat(formattedPrice).toLocaleString('es-AR', { maximumFractionDigits: 6 })}
-                </td>
-                <td className="py-6">
-                  <span className={`px-2 py-1 rounded-full text-xs font-bold ${
-                    statusNum === 0 ? 'bg-primary-container/30 text-primary' :
-                    statusNum === 1 ? 'bg-secondary-container/30 text-secondary' :
-                    'bg-outline-variant/30 text-outline'
-                  }`}>
-                    {STATUS_LABELS[statusNum] || 'Desconocido'}
-                  </span>
-                </td>
+                <td className="py-6 text-sm text-on-surface-variant">{d.strategy}</td>
                 <td className="py-6 text-right">
                   <button className="text-on-surface-variant hover:text-primary transition-colors">
                     <span className="material-symbols-outlined">more_horiz</span>
                   </button>
                 </td>
               </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    </div>
-  )
-}
-
-function MockDepositsTable() {
-  return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-left border-collapse">
-        <thead>
-          <tr className="text-[10px] font-label font-bold text-outline uppercase tracking-[0.2em] border-b border-outline-variant/20">
-            <th className="py-4">Activo / Vault</th>
-            <th className="py-4">Valor Actual</th>
-            <th className="py-4">Yield</th>
-            <th className="py-4">Estrategia</th>
-            <th className="py-4 text-right">Acción</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-outline-variant/10">
-          {mockDeposits.map((d) => (
-            <tr key={d.symbol} className="group hover:bg-surface-container-low transition-colors">
-              <td className="py-6">
-                <div className="flex items-center gap-3">
-                  <img src={d.logo} alt={d.symbol} className="w-8 h-8 rounded-full" />
-                  <div>
-                    <p className="font-medium text-sm">{d.name}</p>
-                    <p className="text-xs text-on-surface-variant">{d.network}</p>
-                  </div>
-                </div>
-              </td>
-              <td className="py-6 font-medium text-sm">{d.value}</td>
-              <td className="py-6">
-                <span className="bg-primary-container/30 text-primary px-2 py-1 rounded-full text-xs font-bold">
-                  {d.apy} APY
-                </span>
-              </td>
-              <td className="py-6 text-sm text-on-surface-variant">{d.strategy}</td>
-              <td className="py-6 text-right">
-                <button className="text-on-surface-variant hover:text-primary transition-colors">
-                  <span className="material-symbols-outlined">more_horiz</span>
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   )
 }
 
