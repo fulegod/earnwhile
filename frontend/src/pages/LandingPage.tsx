@@ -286,6 +286,40 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Roadmap */}
+        <section className="py-24 bg-surface">
+          <div className="max-w-[1440px] mx-auto px-8">
+            <div className="text-center mb-16">
+              <span className="font-label text-xs uppercase tracking-[0.2em] text-outline mb-4 block">Roadmap</span>
+              <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Más allá de limit orders.</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="p-8 bg-primary text-on-primary rounded-2xl">
+                <span className="text-xs font-label font-bold uppercase tracking-widest opacity-70">Ahora</span>
+                <h3 className="font-headline text-xl font-bold mt-3 mb-2">Limit Orders</h3>
+                <p className="text-sm opacity-80">Yield automático para órdenes pendientes en DEXs de Avalanche.</p>
+              </div>
+              <div className="p-8 bg-surface-container-lowest rounded-2xl border border-outline-variant/10">
+                <span className="text-xs font-label font-bold uppercase tracking-widest text-primary">Q2 2026</span>
+                <h3 className="font-headline text-xl font-bold mt-3 mb-2">NFT Bids & Remesas</h3>
+                <p className="text-sm text-on-surface-variant">Capital en ofertas de NFTs y remesas esperando ser cobradas generando yield.</p>
+              </div>
+              <div className="p-8 bg-surface-container-lowest rounded-2xl border border-outline-variant/10">
+                <span className="text-xs font-label font-bold uppercase tracking-widest text-primary">Q3 2026</span>
+                <h3 className="font-headline text-xl font-bold mt-3 mb-2">Real World Assets</h3>
+                <p className="text-sm text-on-surface-variant">Depósitos en escrow de real estate tokenizado y comercio internacional.</p>
+                <span className="inline-block mt-3 px-3 py-1 bg-primary-container text-on-primary-container rounded-full text-[10px] font-bold uppercase tracking-widest">Coming Soon</span>
+              </div>
+              <div className="p-8 bg-surface-container-lowest rounded-2xl border border-outline-variant/10">
+                <span className="text-xs font-label font-bold uppercase tracking-widest text-primary">Q4 2026</span>
+                <h3 className="font-headline text-xl font-bold mt-3 mb-2">Multi-Chain</h3>
+                <p className="text-sm text-on-surface-variant">Expansión a Ethereum, Arbitrum y Solana. Un yield layer universal.</p>
+                <span className="inline-block mt-3 px-3 py-1 bg-primary-container text-on-primary-container rounded-full text-[10px] font-bold uppercase tracking-widest">Coming Soon</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Footer CTA */}
         <footer className="bg-white py-32">
           <div className="max-w-[1440px] mx-auto px-8 flex flex-col items-center text-center">
