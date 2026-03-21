@@ -1,13 +1,16 @@
 import { Link, useLocation } from 'react-router-dom'
-
-const navItems = [
-  { icon: 'dashboard', label: 'Resumen', href: '/app' },
-  { icon: 'add_circle', label: 'Crear Orden', href: '/app/create' },
-  { icon: 'smart_toy', label: 'AI Agent', href: '/app/agent' },
-]
+import LangToggle from './LangToggle'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function SideNavBar() {
   const location = useLocation()
+  const { t } = useLang()
+
+  const navItems = [
+    { icon: 'dashboard', label: t('nav_summary'), href: '/app' },
+    { icon: 'add_circle', label: t('nav_create'), href: '/app/create' },
+    { icon: 'smart_toy', label: t('nav_ai_agent'), href: '/app/agent' },
+  ]
 
   return (
     <>
@@ -23,7 +26,7 @@ export default function SideNavBar() {
             const isActive = location.pathname === item.href
             return (
               <Link
-                key={item.label}
+                key={item.href}
                 to={item.href}
                 className={`${
                   isActive
@@ -38,13 +41,18 @@ export default function SideNavBar() {
           })}
         </div>
 
-        <div className="mt-auto p-4 bg-surface-container-low rounded-xl">
-          <p className="text-[10px] font-label font-semibold text-on-surface-variant uppercase tracking-[0.1em] mb-1">
-            Estado del Protocolo
-          </p>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            <span className="text-xs font-medium text-on-surface">v1.0.0 Operacional</span>
+        <div className="mt-auto space-y-4">
+          <div className="flex justify-center">
+            <LangToggle />
+          </div>
+          <div className="p-4 bg-surface-container-low rounded-xl">
+            <p className="text-[10px] font-label font-semibold text-on-surface-variant uppercase tracking-[0.1em] mb-1">
+              {t('nav_protocol_status')}
+            </p>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              <span className="text-xs font-medium text-on-surface">{t('nav_operational')}</span>
+            </div>
           </div>
         </div>
       </aside>
@@ -55,7 +63,7 @@ export default function SideNavBar() {
           const isActive = location.pathname === item.href
           return (
             <Link
-              key={item.label}
+              key={item.href}
               to={item.href}
               className={`flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors ${
                 isActive ? 'text-primary' : 'text-on-surface-variant'

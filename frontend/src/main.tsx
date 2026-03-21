@@ -6,17 +6,20 @@ import { WagmiProvider } from 'wagmi'
 import './index.css'
 import App from './App'
 import { config } from './config/wagmi'
+import { LanguageProvider } from './i18n/LanguageContext'
 
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <LanguageProvider>
+      <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </LanguageProvider>
   </StrictMode>,
 )

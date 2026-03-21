@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom'
 import ConnectWallet from './ConnectWallet'
+import LangToggle from './LangToggle'
+import { useLang } from '../i18n/LanguageContext'
 
 export default function TopNavBar({ active = 'markets' }: { active?: string }) {
+  const { t } = useLang()
+
   const links = [
-    { id: 'vaults', label: 'Dashboard', href: '/app' },
-    { id: 'agent', label: 'AI Agent', href: '/app/agent' },
+    { id: 'vaults', label: t('nav_dashboard'), href: '/app' },
+    { id: 'agent', label: t('nav_ai_agent'), href: '/app/agent' },
   ]
 
   return (
@@ -31,7 +35,10 @@ export default function TopNavBar({ active = 'markets' }: { active?: string }) {
             ))}
           </div>
         </div>
-        <ConnectWallet />
+        <div className="flex items-center gap-4">
+          <LangToggle />
+          <ConnectWallet />
+        </div>
       </nav>
     </header>
   )

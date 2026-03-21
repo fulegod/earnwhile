@@ -6,6 +6,7 @@ import SideNavBar from '../components/SideNavBar'
 import ConnectWallet from '../components/ConnectWallet'
 import { useUSDCBalance, useBestRate } from '../hooks/useContracts'
 import { CONTRACTS, ERC20_ABI, ORDERBOOK_ABI } from '../config/contracts'
+import { useLang } from '@/i18n/LanguageContext'
 
 const strategies = [
   { id: 'vault', icon: 'account_balance', name: 'Balanced', desc: 'AI Agent + Optimistic Democracy. Aave, BENQI, Compound con rebalanceo automático. 5-12% APY.' },
@@ -19,6 +20,8 @@ export default function CreateOrder() {
   const [amount, setAmount] = useState('')
   const [expiry, setExpiry] = useState('7 Días')
   const [strategy, setStrategy] = useState('vault')
+
+  const { t } = useLang()
 
   const { data: usdcBalance, refetch: refetchBalance } = useUSDCBalance()
   const { data: bestRateData } = useBestRate()
@@ -112,9 +115,9 @@ export default function CreateOrder() {
             {/* Step 1: Asset */}
             <section>
               <header className="mb-10">
-                <span className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant font-semibold">Paso 01</span>
-                <h1 className="text-4xl font-headline font-extrabold tracking-tight mt-2">Seleccionar Activo</h1>
-                <p className="text-on-surface-variant mt-2 max-w-lg">Elige la liquidez que deseas desplegar en el ecosistema del protocolo.</p>
+                <span className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant font-semibold">{t('create_step1')}</span>
+                <h1 className="text-4xl font-headline font-extrabold tracking-tight mt-2">{t('create_step1_title')}</h1>
+                <p className="text-on-surface-variant mt-2 max-w-lg">{t('create_step1_desc')}</p>
               </header>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="group relative p-6 bg-surface-container-lowest border border-outline-variant/15 rounded-xl ring-2 ring-primary">
@@ -167,13 +170,13 @@ export default function CreateOrder() {
             {/* Step 2: Parameters */}
             <section>
               <header className="mb-10">
-                <span className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant font-semibold">Paso 02</span>
-                <h2 className="text-4xl font-headline font-extrabold tracking-tight mt-2">Configurar Parámetros</h2>
+                <span className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant font-semibold">{t('create_step2')}</span>
+                <h2 className="text-4xl font-headline font-extrabold tracking-tight mt-2">{t('create_step2_title')}</h2>
               </header>
               <div className="space-y-12">
                 <div className="p-8 bg-surface-container-low rounded-xl">
                   <label className="font-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold block mb-4">
-                    Precio Límite (USDC por WETH)
+                    {t('create_price_label')}
                   </label>
                   <div className="flex items-end gap-4">
                     <input
@@ -187,13 +190,13 @@ export default function CreateOrder() {
                   </div>
                   <p className="text-sm text-on-surface-variant mt-6 flex items-center gap-2">
                     <span className="material-symbols-outlined text-sm">info</span>
-                    La orden se ejecuta cuando el precio de WETH alcanza este valor.
+                    {t('create_price_hint')}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div className="space-y-4">
-                    <label className="font-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Cantidad USDC a Depositar</label>
+                    <label className="font-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold">{t('create_amount_label')}</label>
                     <div className="relative">
                       <input
                         className="w-full bg-surface-container-lowest border-0 border-b border-outline-variant/30 py-4 text-2xl font-headline font-semibold focus:border-primary focus:ring-0 outline-none"
@@ -225,9 +228,9 @@ export default function CreateOrder() {
             {/* Step 3: Strategy */}
             <section>
               <header className="mb-10">
-                <span className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant font-semibold">Paso 03</span>
-                <h2 className="text-4xl font-headline font-extrabold tracking-tight mt-2">Estrategia de Espera</h2>
-                <p className="text-on-surface-variant mt-2">Define dónde descansa tu capital mientras espera el yield objetivo.</p>
+                <span className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant font-semibold">{t('create_step3')}</span>
+                <h2 className="text-4xl font-headline font-extrabold tracking-tight mt-2">{t('create_step3_title')}</h2>
+                <p className="text-on-surface-variant mt-2">{t('create_step3_desc')}</p>
               </header>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
                 {strategies.map((s) => (
@@ -251,16 +254,16 @@ export default function CreateOrder() {
           <div className="lg:col-span-4 mt-20 lg:mt-0">
             <div className="sticky top-32 space-y-6">
               <div className="p-8 bg-surface-container-lowest border border-outline-variant/10 rounded-2xl shadow-xl shadow-on-surface/[0.02]">
-                <h3 className="font-headline font-extrabold text-xl mb-8">Resumen de Ejecución</h3>
+                <h3 className="font-headline font-extrabold text-xl mb-8">{t('create_summary')}</h3>
                 <div className="space-y-6">
                   {[
-                    { label: 'Activo', value: 'USDC' },
-                    { label: 'Precio límite', value: `${limitPrice} USDC/WETH` },
-                    { label: 'Mejor APY disponible', value: `${bestApy.toFixed(1)}%`, highlight: true },
-                    { label: 'Yield diario estimado', value: `$${dailyYield}`, highlight: true },
-                    { label: 'Estrategia de espera', value: strategies.find((s) => s.id === strategy)?.name || '' },
-                    { label: 'Fee de Red', value: '~0.02 AVAX' },
-                    { label: 'Fee del Protocolo', value: '10% del yield' },
+                    { label: t('create_asset'), value: 'USDC' },
+                    { label: t('create_limit_price'), value: `${limitPrice} USDC/WETH` },
+                    { label: t('create_best_apy'), value: `${bestApy.toFixed(1)}%`, highlight: true },
+                    { label: t('create_daily_yield'), value: `$${dailyYield}`, highlight: true },
+                    { label: t('create_strategy'), value: strategies.find((s) => s.id === strategy)?.name || '' },
+                    { label: t('create_gas'), value: '~0.02 AVAX' },
+                    { label: t('create_protocol_fee'), value: '10% del yield' },
                   ].map((item) => (
                     <div key={item.label} className="flex justify-between items-center pb-4 border-b border-outline-variant/10">
                       <span className="text-on-surface-variant text-sm">{item.label}</span>
@@ -268,10 +271,10 @@ export default function CreateOrder() {
                     </div>
                   ))}
                   <div className="pt-4 flex justify-between items-baseline">
-                    <span className="font-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Valor Total</span>
+                    <span className="font-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold">{t('create_total')}</span>
                     <div className="text-right">
                       <div className="text-3xl font-headline font-bold">{amount || '0.00'}</div>
-                      <div className="text-xs text-on-surface-variant uppercase font-medium">USDC Tokens</div>
+                      <div className="text-xs text-on-surface-variant uppercase font-medium">{t('create_tokens')}</div>
                     </div>
                   </div>
                 </div>
@@ -279,11 +282,11 @@ export default function CreateOrder() {
                 {orderDone ? (
                   <div className="mt-10 p-4 bg-primary/10 rounded-xl text-center">
                     <span className="material-symbols-outlined text-primary text-4xl mb-2">check_circle</span>
-                    <p className="font-headline font-bold text-primary">Orden Creada</p>
-                    <p className="text-xs text-on-surface-variant mt-1">Tu capital está generando yield mientras espera.</p>
+                    <p className="font-headline font-bold text-primary">{t('create_success')}</p>
+                    <p className="text-xs text-on-surface-variant mt-1">{t('create_success_desc')}</p>
                     {orderHash && (
                       <a href={`https://testnet.snowtrace.io/tx/${orderHash}`} target="_blank" rel="noreferrer" className="text-xs text-primary underline mt-2 block">
-                        Ver en SnowTrace
+                        {t('create_view_tx')}
                       </a>
                     )}
                   </div>
@@ -293,12 +296,12 @@ export default function CreateOrder() {
                     disabled={!isConnected || !amount || isOrdering || isOrderConfirming}
                     className="w-full mt-10 bg-gradient-to-br from-primary to-primary-container text-on-primary py-5 rounded-xl font-headline font-bold text-lg hover:brightness-105 active:scale-[0.98] transition-all shadow-lg shadow-primary/20 disabled:opacity-50"
                   >
-                    {isOrdering ? 'Firmando orden...' : isOrderConfirming ? 'Confirmando en Fuji...' : 'Ejecutar Intent'}
+                    {isOrdering ? t('create_signing') : isOrderConfirming ? t('create_confirming') : t('create_execute')}
                   </button>
                 )}
 
                 <p className="text-[10px] text-center text-on-surface-variant mt-6 uppercase tracking-widest leading-relaxed">
-                  Paso 1: aprobar tokens. Paso 2: crear la orden on-chain.
+                  {t('create_steps_hint')}
                 </p>
               </div>
 
@@ -307,8 +310,8 @@ export default function CreateOrder() {
                   <span className="material-symbols-outlined">shield</span>
                 </div>
                 <div>
-                  <p className="text-xs font-label uppercase tracking-wider font-bold">Contratos Verificados</p>
-                  <p className="text-[11px] text-on-surface-variant">Desplegados en Avalanche Fuji Testnet.</p>
+                  <p className="text-xs font-label uppercase tracking-wider font-bold">{t('create_verified')}</p>
+                  <p className="text-[11px] text-on-surface-variant">{t('create_verified_desc')}</p>
                 </div>
               </div>
             </div>

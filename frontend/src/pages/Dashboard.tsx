@@ -5,6 +5,7 @@ import ConnectWallet from '../components/ConnectWallet'
 import SideNavBar from '../components/SideNavBar'
 import { useVaultBalance, useBestRate, useActiveOrders, formatUnits } from '../hooks/useContracts'
 import { CONTRACTS, ORDERBOOK_ABI } from '../config/contracts'
+import { useLang } from '@/i18n/LanguageContext'
 
 // Mock data as fallback when wallet is not connected
 const mockDeposits = [
@@ -279,6 +280,7 @@ function MockDepositsTable() {
 
 export default function Dashboard() {
   const { isConnected } = useAccount()
+  const { t } = useLang()
 
   // Read vault balance (USDC)
   const { data: vaultBalance, isLoading: vaultLoading } = useVaultBalance(CONTRACTS.MockUSDC)
@@ -303,16 +305,16 @@ export default function Dashboard() {
     : 14
 
   const totalDepositedSub = isConnected
-    ? 'Balance en el vault EarnWhile.'
-    : 'Conectá tu wallet para ver datos reales.'
+    ? t('dash_vault_hint')
+    : t('dash_connect_hint')
 
   const apySub = bestRateData
-    ? 'Mejor tasa disponible en YieldRouter.'
-    : 'Rendimiento neto de fees del protocolo.'
+    ? t('dash_rate_hint')
+    : t('dash_rate_fallback')
 
   const ordersSub = isConnected
-    ? 'Órdenes activas en el OrderBook.'
-    : 'Conectá tu wallet para ver tus órdenes.'
+    ? t('dash_orders_hint')
+    : t('dash_orders_connect')
 
   return (
     <div className="flex min-h-screen overflow-x-hidden">
@@ -337,7 +339,7 @@ export default function Dashboard() {
           {/* Stats */}
           <section className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-12 mb-8 md:mb-20">
             <div className="space-y-2 md:space-y-4 p-4 md:p-0 bg-surface-container-lowest md:bg-transparent rounded-xl md:rounded-none">
-              <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">Total Depositado</span>
+              <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">{t('dash_total')}</span>
               <div className="flex items-baseline gap-2">
                 <h2 className="text-2xl md:text-5xl font-headline font-extrabold tracking-tighter text-on-surface">
                   {vaultLoading && isConnected ? (
@@ -351,7 +353,7 @@ export default function Dashboard() {
               <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">{totalDepositedSub}</p>
             </div>
             <div className="space-y-2 md:space-y-4 p-4 md:p-0 bg-surface-container-lowest md:bg-transparent rounded-xl md:rounded-none">
-              <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">APY Promedio</span>
+              <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">{t('dash_apy')}</span>
               <h2 className="text-2xl md:text-5xl font-headline font-extrabold tracking-tighter text-primary">
                 {rateLoading ? (
                   <span className="animate-pulse text-outline-variant">...</span>
@@ -362,7 +364,7 @@ export default function Dashboard() {
               <p className="text-sm text-on-surface-variant max-w-[200px] leading-relaxed">{apySub}</p>
             </div>
             <div className="space-y-2 md:space-y-4 p-4 md:p-0 bg-surface-container-lowest md:bg-transparent rounded-xl md:rounded-none">
-              <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">Órdenes Activas</span>
+              <span className="text-xs font-label font-bold text-outline uppercase tracking-[0.15em]">{t('dash_orders')}</span>
               <h2 className="text-2xl md:text-5xl font-headline font-extrabold tracking-tighter text-on-surface">
                 {ordersLoading && isConnected ? (
                   <span className="animate-pulse text-outline-variant">...</span>
@@ -379,8 +381,8 @@ export default function Dashboard() {
             <div className="md:col-span-8 space-y-8">
               <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4">
                 <div>
-                  <h3 className="text-xl md:text-2xl font-headline font-bold tracking-tight text-on-surface">Comparación de Yield</h3>
-                  <p className="text-on-surface-variant text-xs md:text-sm mt-1">EarnWhile vs. Benchmarks del Mercado (30D)</p>
+                  <h3 className="text-xl md:text-2xl font-headline font-bold tracking-tight text-on-surface">{t('dash_chart_title')}</h3>
+                  <p className="text-on-surface-variant text-xs md:text-sm mt-1">{t('dash_chart_sub')}</p>
                 </div>
                 <div className="flex gap-4">
                   <div className="flex items-center gap-2">
@@ -389,7 +391,7 @@ export default function Dashboard() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-secondary-container" />
-                    <span className="text-xs font-medium">Promedio Mercado</span>
+                    <span className="text-xs font-medium">{t('dash_market')}</span>
                   </div>
                 </div>
               </div>
@@ -422,10 +424,10 @@ export default function Dashboard() {
               <div className="pt-12">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="text-xl font-headline font-bold tracking-tight text-on-surface">
-                    {isConnected ? 'Órdenes Activas' : 'Depósitos Activos'}
+                    {isConnected ? t('dash_active_orders') : t('dash_active_deposits')}
                   </h3>
                   <Link to="/app/create" className="text-primary font-label text-xs font-bold uppercase tracking-widest hover:underline underline-offset-4">
-                    + Nueva Orden
+                    {t('dash_new_order')}
                   </Link>
                 </div>
 
@@ -435,17 +437,17 @@ export default function Dashboard() {
                   ) : ordersLoading ? (
                     <div className="py-12 text-center">
                       <span className="material-symbols-outlined text-primary animate-spin text-3xl">progress_activity</span>
-                      <p className="text-sm text-on-surface-variant mt-3">Cargando órdenes...</p>
+                      <p className="text-sm text-on-surface-variant mt-3">{t('dash_loading')}</p>
                     </div>
                   ) : (
                     <div className="py-12 text-center space-y-4">
                       <span className="material-symbols-outlined text-outline-variant text-5xl">inbox</span>
-                      <p className="text-on-surface-variant text-sm">No tenés órdenes activas</p>
+                      <p className="text-on-surface-variant text-sm">{t('dash_no_orders')}</p>
                       <Link
                         to="/app/create"
                         className="inline-block bg-on-surface text-surface px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-primary transition-colors"
                       >
-                        Crear Orden
+                        {t('dash_create_order')}
                       </Link>
                     </div>
                   )
@@ -461,24 +463,24 @@ export default function Dashboard() {
               <div className="bg-surface-container-low rounded-xl p-8 space-y-6 editorial-shadow">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>insights</span>
-                  <h4 className="font-headline font-bold text-lg tracking-tight">Insight de IA</h4>
+                  <h4 className="font-headline font-bold text-lg tracking-tight">{t('dash_insight_title')}</h4>
                 </div>
                 <p className="text-sm text-on-surface leading-relaxed italic font-medium">
-                  "El spread actual de stablecoins en Avalanche se está ampliando. Nuestros modelos sugieren migrar 15% de tu liquidez AVAX al nuevo mercado de BENQI podría incrementar el yield total del portafolio en +0.85% durante los próximos 14 días."
+                  {t('dash_insight_text')}
                 </p>
                 <div className="pt-4 flex flex-col gap-3">
                   <Link to="/app/agent" className="w-full bg-on-surface text-surface py-3 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-primary transition-colors text-center block">
-                    Ejecutar Migración
+                    {t('dash_migrate')}
                   </Link>
                   <Link to="/app/agent" className="w-full border border-outline-variant/30 text-on-surface-variant py-3 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-white transition-all text-center block">
-                    Ver Análisis Completo
+                    {t('dash_analysis')}
                   </Link>
                 </div>
               </div>
 
               {/* Events */}
               <div className="space-y-6">
-                <h4 className="font-headline font-bold text-lg tracking-tight">Eventos del Sistema</h4>
+                <h4 className="font-headline font-bold text-lg tracking-tight">{t('dash_events')}</h4>
                 <div className="space-y-6">
                   {events.map((e, i) => (
                     <div key={i} className="flex gap-4">
@@ -498,9 +500,9 @@ export default function Dashboard() {
                 <img src="/images/promo.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-on-surface via-on-surface/30 to-transparent" />
                 <div className="relative z-10 space-y-2">
-                  <p className="text-[10px] font-label font-bold uppercase tracking-[0.2em] opacity-80">Acceso Institucional</p>
-                  <h5 className="text-2xl font-headline font-extrabold leading-tight">EarnWhile Prime ya está activo.</h5>
-                  <p className="text-sm opacity-70">Parámetros de riesgo personalizados para cuentas de tesorería gestionadas.</p>
+                  <p className="text-[10px] font-label font-bold uppercase tracking-[0.2em] opacity-80">{t('dash_institutional')}</p>
+                  <h5 className="text-2xl font-headline font-extrabold leading-tight">{t('dash_prime')}</h5>
+                  <p className="text-sm opacity-70">{t('dash_prime_desc')}</p>
                 </div>
               </div>
             </div>
