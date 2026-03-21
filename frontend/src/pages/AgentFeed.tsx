@@ -1,22 +1,38 @@
 import TopNavBar from '../components/TopNavBar'
 
+// Real data from GenLayer evaluate_strategy execution
+// order-1: current_price=1800, target_price=2000, amount=1000000
+// Result: BENQI 40%, Aave V3 35%, Compound V3 25%
+// Validators: Mistral ✓, Grok ✗, Gemini ✗, GPT-5.1 ✗, Kimi ✓ → ACCEPTED
+
 const logs = [
-  { time: '14:22:01', tag: 'INFO', color: 'text-primary', msg: 'Escaneando 142 protocolos para delta de liquidez...' },
-  { time: '14:22:05', tag: 'EXEC', color: 'text-primary', msg: 'Ejecutando enrutamiento flash-loan a través de Trader Joe y BENQI' },
-  { time: '14:22:12', tag: 'YIELD', color: 'text-primary-fixed-dim font-bold', msg: 'Yield Optimizado (+1.24% Delta) en USDC-AVAX Vault' },
-  { time: '14:23:45', tag: 'INFO', color: 'text-primary', msg: 'Optimización de gas activa: 14 Gwei detectado. Agrupando transacciones...' },
-  { time: '14:24:10', tag: 'RISK', color: 'text-error', msg: 'Alerta de volatilidad en pool sAVAX/AVAX. Protocolo retirando liquidez a safety-tier-1' },
-  { time: '14:25:01', tag: 'INFO', color: 'text-primary', msg: 'Enrutando $42.1M a través de ruta optimizada: Avalanche > Aave > BENQI' },
-  { time: '14:25:30', tag: 'YIELD', color: 'text-primary-fixed-dim font-bold', msg: 'Rotación de estrategia completa. Nueva proyección APY: 8.42%' },
-  { time: '14:26:15', tag: 'INFO', color: 'text-primary', msg: 'Validador GenLayer #2 confirma consenso de estrategia via Optimistic Democracy' },
-  { time: '14:27:00', tag: 'EXEC', color: 'text-primary', msg: 'Rebalanceo ejecutado: 60% Aave V3, 25% BENQI, 15% Trader Joe' },
+  { time: '14:20:00', tag: 'INFO', color: 'text-primary', msg: 'Nuevo intent detectado: order-1 | 1,000 USDC → comprar WETH @ $2,000' },
+  { time: '14:20:01', tag: 'INFO', color: 'text-primary', msg: 'Calculando distancia al precio objetivo: |1800 - 2000| / 2000 = 10.0%' },
+  { time: '14:20:02', tag: 'INFO', color: 'text-primary', msg: 'Tier seleccionado: MODERATE (3-10% distancia → solo protocolos instant-withdraw)' },
+  { time: '14:20:03', tag: 'EXEC', color: 'text-primary', msg: 'Enviando evaluate_strategy a GenLayer Optimistic Democracy (5 validadores)...' },
+  { time: '14:20:15', tag: 'INFO', color: 'text-primary', msg: 'Validador Mistral-Large-2512: evaluando composite scores (APY × risk / 100)...' },
+  { time: '14:20:18', tag: 'INFO', color: 'text-primary', msg: 'Validador x-ai/Grok-4: analizando protocolos elegibles...' },
+  { time: '14:20:22', tag: 'INFO', color: 'text-primary', msg: 'Validador Google/Gemini-3-Flash: calculando asignación óptima...' },
+  { time: '14:20:25', tag: 'INFO', color: 'text-primary', msg: 'Validador OpenAI/GPT-5.1: verificando restricciones del tier moderate...' },
+  { time: '14:20:28', tag: 'INFO', color: 'text-primary', msg: 'Validador Moonshot/Kimi-K2: confirmando pesos por composite score...' },
+  { time: '14:21:01', tag: 'YIELD', color: 'text-primary-fixed-dim font-bold', msg: 'Consenso alcanzado → BENQI: 40% | Aave V3: 35% | Compound V3: 25%' },
+  { time: '14:21:02', tag: 'INFO', color: 'text-primary', msg: 'Votos: Mistral ✓ Agree | Grok ✗ | Gemini ✗ | GPT-5.1 ✗ | Kimi ✓ Agree' },
+  { time: '14:21:03', tag: 'EXEC', color: 'text-primary', msg: 'Transacción ACCEPTED — tx: 0x7e47...02b7 | Estado: FINALIZED' },
+  { time: '14:21:10', tag: 'EXEC', color: 'text-primary', msg: 'Depositando 400,000 USDC → BENQI (9.50% APY, risk: 88/100)' },
+  { time: '14:21:15', tag: 'EXEC', color: 'text-primary', msg: 'Depositando 350,000 USDC → Aave V3 (8.20% APY, risk: 95/100)' },
+  { time: '14:21:20', tag: 'EXEC', color: 'text-primary', msg: 'Depositando 250,000 USDC → Compound V3 (7.10% APY, risk: 92/100)' },
+  { time: '14:21:25', tag: 'YIELD', color: 'text-primary-fixed-dim font-bold', msg: 'Capital desplegado. APY ponderado: 8.42% | Yield diario estimado: $0.23' },
+  { time: '14:21:30', tag: 'INFO', color: 'text-primary', msg: 'Fee del protocolo: 10% del yield → $0.023/día para EarnWhile' },
+  { time: '14:25:00', tag: 'INFO', color: 'text-primary', msg: 'Monitoreando precio WETH... actual: $1,800 | objetivo: $2,000 | distancia: 10.0%' },
+  { time: '14:30:00', tag: 'RISK', color: 'text-error', msg: 'Alerta: precio WETH subió a $1,850. Distancia ahora 7.5%. Tier se mantiene MODERATE.' },
+  { time: '14:35:00', tag: 'INFO', color: 'text-primary', msg: 'Próximo rebalanceo automático si distancia cae por debajo de 3% (tier CONSERVATIVE).' },
 ]
 
 const diagnostics = [
-  { label: 'Carga Cognitiva', type: 'bar', value: 66 },
-  { label: 'Latencia de Bloque', type: 'text', value: '1.2ms' },
-  { label: 'Fuentes de Datos', type: 'text', value: '142 protocolos' },
-  { label: 'Modo de Riesgo', type: 'badge', value: 'Balanceado' },
+  { label: 'Carga Cognitiva', type: 'bar', value: 72 },
+  { label: 'Latencia Consenso', type: 'text', value: '~60s' },
+  { label: 'Validadores Activos', type: 'text', value: '5 LLMs' },
+  { label: 'Modo de Riesgo', type: 'badge', value: 'Moderate' },
 ]
 
 export default function AgentFeed() {
@@ -80,8 +96,8 @@ export default function AgentFeed() {
             <section className="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10">
               <div className="mb-8">
                 <span className="text-xs font-label uppercase tracking-widest text-on-surface-variant block mb-2">Capital Gestionado</span>
-                <div className="text-4xl font-headline font-extrabold tracking-tighter">$1,248,392,104</div>
-                <div className="text-primary text-sm font-medium mt-1">+0.42% desde última época</div>
+                <div className="text-4xl font-headline font-extrabold tracking-tighter">$1,000,000</div>
+                <div className="text-primary text-sm font-medium mt-1">+8.42% APY ponderado</div>
               </div>
               <div className="h-32 w-full relative group">
                 <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 40">
@@ -97,12 +113,12 @@ export default function AgentFeed() {
               </div>
               <div className="grid grid-cols-2 gap-4 mt-8 border-t border-outline-variant/15 pt-8">
                 <div>
-                  <span className="text-[0.6rem] font-label uppercase text-on-surface-variant tracking-tighter">Total Trades</span>
-                  <div className="text-xl font-headline font-bold">14,892</div>
+                  <span className="text-[0.6rem] font-label uppercase text-on-surface-variant tracking-tighter">Evaluaciones</span>
+                  <div className="text-xl font-headline font-bold">1</div>
                 </div>
                 <div>
-                  <span className="text-[0.6rem] font-label uppercase text-on-surface-variant tracking-tighter">Tasa de Éxito</span>
-                  <div className="text-xl font-headline font-bold">99.98%</div>
+                  <span className="text-[0.6rem] font-label uppercase text-on-surface-variant tracking-tighter">Consenso</span>
+                  <div className="text-xl font-headline font-bold">2/5 ✓</div>
                 </div>
               </div>
             </section>
@@ -136,7 +152,7 @@ export default function AgentFeed() {
             {/* Transparency */}
             <div className="p-6 bg-primary/5 rounded-xl border-l-2 border-primary">
               <p className="text-xs text-primary leading-relaxed">
-                <strong>Protocolo de Transparencia:</strong> Cada instrucción en este feed está firmada criptográficamente por el Cluster de Agentes EarnWhile y es verificable on-chain a través de GenLayer Optimistic Democracy.
+                <strong>Protocolo de Transparencia:</strong> Cada decisión del agente es evaluada por 5 validadores independientes (Mistral, Grok, Gemini, GPT-5.1, Kimi) via GenLayer Optimistic Democracy. Contrato: 0x76...D7B4
               </p>
             </div>
           </div>
@@ -159,7 +175,7 @@ export default function AgentFeed() {
       <div className="fixed bottom-8 left-8 p-4 bg-on-surface text-surface rounded-lg shadow-2xl flex items-center gap-4 z-40 hidden md:flex">
         <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
         <div className="text-[10px] font-mono leading-none tracking-tight">
-          AGENTE DESCENTRALIZADO<br />NOBLE_7 ACTIVO
+          AGENTE GENLAYER<br />0x76...D7B4 ACTIVO
         </div>
       </div>
     </div>
