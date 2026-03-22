@@ -19,7 +19,7 @@ const partnerLogos = [
 export default function LandingPage() {
   const { t } = useLang()
   return (
-    <div className="bg-background text-on-surface font-body">
+    <div className="bg-background text-on-surface font-body overflow-x-hidden">
       <TopNavBar active="markets" />
 
       <main className="relative">
