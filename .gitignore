@@ -22,3 +22,8 @@ agent/.genlayer/
 # Claude Code
 CLAUDE.md
 .agent/
+
+# Internal docs
+progress.md
+task_plan.md
+docs/demo-video-script.md
