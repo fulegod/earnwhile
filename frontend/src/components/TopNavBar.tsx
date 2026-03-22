@@ -35,8 +35,8 @@ export default function TopNavBar({ active = 'markets' }: { active?: string }) {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <LangToggle />
+        <div className="flex items-center gap-3">
+          <div className="hidden md:block"><LangToggle /></div>
           <ConnectWallet />
         </div>
       </nav>
